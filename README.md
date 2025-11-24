@@ -166,4 +166,7 @@ class MaintenanceMailer < ApplicationMailer
     @user = vehicle.user
     mail(to: @user.email, subject: 'メンテナンス時期のお知らせ')
   end
-end
+end## 開発予定の機能
+-車両登録機能
+-点検記録機能
+-リマインダー機能
