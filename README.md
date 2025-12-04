@@ -129,7 +129,7 @@
 ### **本リリースまでに作りたい機能**
 **MVPが動いてから段階的に追加**
 - [ ] **メール通知機能**（オイル交換時期の自動リマインド）
-- [ ] メンテナンス項目の拡張（タイヤ交換、車検、バッテリー等）
+- [ ] メンテナンス項目の拡張（オイルフィルターの有無、タイヤ交換、車検、バッテリー等）
 - [ ] **ダッシュボード**（今月やるべきメンテナンス一覧）
 - [ ] 複数車両対応
 - [ ] **車種別メンテナンス推奨項目**（整備士知識の活用）
@@ -153,39 +153,7 @@
 - **データベース**: PostgreSQL 14
 - **デプロイ先**: Render
 
-### **一般的なCRUD以外の実装予定機能**
-
-#### **メール通知システム（メインの差別化機能）**
-車両のメンテナンス時期になったら自動でメール通知を送る機能。
-
-**MVPでの実装方針（シンプル版）**：
-- **Action Mailer**：基本のメール送信機能（Rails標準）
-- **Rakeタスク + cron**：毎日決まった時間にメンテナンス時期をチェック
-
-**MVPでの実装イメージ**：
-```ruby
-# lib/tasks/maintenance_reminder.rake
-namespace :maintenance do
-  desc "Send maintenance reminder emails"
-  task send_reminders: :environment do
-    Vehicle.needs_maintenance_reminder.each do |vehicle|
-      MaintenanceMailer.reminder_email(vehicle).deliver_now
-    end
-  end
-end
-
-# app/mailers/maintenance_mailer.rb
-class MaintenanceMailer < ApplicationMailer
-  def reminder_email(vehicle)
-    @vehicle = vehicle
-    @user = vehicle.user
-    mail(to: @user.email, subject: 'メンテナンス時期のお知らせ')
-  end
-end
->>>>>>> Stashed changes
-
-
-### **一般的なCRUD以外の実装予定機能**
+**一般的なCRUD以外の実装予定機能**
 
 #### **次回交換時期の自動計算（MVPのコア機能）**
 オイル交換の履歴から、次回交換時期を自動計算して表示。
@@ -195,6 +163,10 @@ end
 （ハイブリッド車の場合は10,000km）
 - **期間ベース**: 前回交換から1年経過で通知
 - **両方の条件**: いずれか早い方で判定
+
+**使用技術**：
+- Railsのモデルメソッドで実装（`Vehicle#km_until_next_oil_change`等）
+- 車両タイプ（通常/ハイブリッド）に応じた計算ロジック
 
 **実装イメージ**：
 # app/models/vehicle.rb
