@@ -147,8 +147,7 @@
 
 ## ER図
 
-[![Image from Gyazo](https://i.gyazo.com/f17efb01f15cd73ee1fce9d52aa132c2.png)](https://gyazo.com/f17efb01f15cd73ee1fce9d52aa132c2)
-
+[![Image from Gyazo](https://i.gyazo.com/d65a33b668a9c77c2110e8c387f3ab4a.png)](https://gyazo.com/d65a33b668a9c77c2110e8c387f3ab4a)
 ## 使用する技術スタック
 
 ### **基本構成**
