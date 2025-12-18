@@ -1,4 +1,5 @@
 # 車両点検リマインダーアプリ「MechaniCare」
+
 ## サービス概要
 
 車のメンテナンス時期を忘れがちな車オーナーに
@@ -152,6 +153,34 @@
 - **Ruby**: 3.1.4
 - **データベース**: PostgreSQL 14
 - **デプロイ先**: Render
+
+## セットアップ
+
+### 前提条件
+- Docker
+- Docker Compose
+
+### 起動手順
+```bash
+# リポジトリのクローン
+git clone https://github.com/egifufox/car_maintenance_reminder.git
+cd car_maintenance_reminder
+
+# Dockerコンテナの起動
+docker compose up -d
+
+# データベースの作成
+docker compose exec web bin/rails db:create
+
+# マイグレーション実行
+docker compose exec web bin/rails db:migrate
+
+# サーバーの起動
+docker compose up
+```
+
+### アクセス
+http://localhost:3000
 
 **一般的なCRUD以外の実装予定機能**
 
