@@ -16,6 +16,4 @@ test:
 
 production:
   <<: *default
-  database: car_maintenance_reminder_production
-  username: car_maintenance_reminder
-  password: <%= ENV["CAR_MAINTENANCE_REMINDER_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
