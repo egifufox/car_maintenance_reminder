@@ -2,6 +2,7 @@ services:
   - type: web
     name: car-maintenance-reminder
     env: ruby
+    plan: free
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
     envVars:
@@ -16,3 +17,4 @@ databases:
   - name: car-maintenance-reminder-db
     databaseName: car_maintenance_reminder
     user: car_maintenance_reminder
+    plan: free
