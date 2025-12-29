@@ -48,6 +48,11 @@ gem "bootsnap", require: false
 # Use Sass to process CSS
 # gem "sassc-rails"
 
+gem 'devise'
+
+# 国際化・日本語化
+gem 'rails-i18n', '~> 7.0.0'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 

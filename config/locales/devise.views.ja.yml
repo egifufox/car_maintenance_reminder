@@ -1,0 +1,25 @@
+ja:
+  devise:
+    sessions:
+      new:
+        title: "ログイン"
+        email: "Eメール"
+        password: "パスワード"
+        submit: "ログイン"
+        sign_up: "新規登録"
+        forgot_password: "パスワードをお忘れですか?"
+    registrations:
+      new:
+        title: "新規登録"
+        name: "名前"
+        email: "Eメール"
+        password: "パスワード"
+        password_confirmation: "パスワード(確認用)"
+        minimum_password_length: "%{count}文字以上"
+        submit: "登録"
+        log_in: "ログイン"
+    passwords:
+      new:
+        title: "パスワードをお忘れですか?"
+        email: "Eメール"
+        submit: "パスワードリセット手順を送信"
