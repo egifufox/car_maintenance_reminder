@@ -17,6 +17,11 @@ module App
     # 👇 サブディレクトリ内の翻訳ファイルも確実に読み込む
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml').to_s]
 
+    config.generators do |g|
+      g.skip_routes true
+      g.herper false
+      g.test_framework nil
+    end
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
