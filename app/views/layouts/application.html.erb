@@ -7,7 +7,9 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-  
+
+    <%= link_to '車両登録', new_vehicle_path %>
+
     <% if user_signed_in? %>
       <p>ようこそ、<%= current_user.email %>さん</p>
       <%= button_to 'ログアウト', destroy_user_session_path, method: :delete %>
@@ -18,12 +20,10 @@
   </head>
 
   <body>
-    <% if notice %>
-      <p class="notice"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert"><%= alert %></p>
-    <% end %>
+     <!-- フラッシュメッセージを表示 -->
+    <div class="container mt-3">
+      <%= render 'shared/flash_message' %>
+    </div>
 
     <%= yield %>
   </body>

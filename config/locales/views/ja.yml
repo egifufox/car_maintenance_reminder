@@ -1,0 +1,27 @@
+ja:
+  helpers:
+    submit:
+      create: 登録
+      submit: 保存
+      update: 更新
+  
+  defaults:
+    flash_message:
+      created: "%{item}を作成しました"
+      not_created: "%{item}を作成出来ませんでした"
+      updated: "%{item}を更新しました"
+      not_updated: "%{item}を更新出来ませんでした"
+      deleted: "%{item}を削除しました"
+      require_login: ログインしてください
+  
+  vehicles:
+    new:
+      title: "車両登録"
+    create:
+      success: "%{item}を登録しました"
+    show:
+      title: "車両詳細"
+    edit:
+      title: "車両編集"
+    index:
+      title: "車両一覧"
