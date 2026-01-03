@@ -1,0 +1,31 @@
+<div class="container mt-4">
+  <h1><%= t('vehicles.show.title') %></h1>
+
+  <div class="card mt-3">
+    <div class="card-body">
+      <dl class="row">
+        <dt class="col-sm-3">メーカー:</dt>
+        <dd class="col-sm-9"><%= @vehicle.manufacturer.name %></dd>
+
+        <dt class="col-sm-3">車両名:</dt>
+        <dd class="col-sm-9"><%= @vehicle.vehicle_name %></dd>
+
+        <dt class="col-sm-3">車種名:</dt>
+        <dd class="col-sm-9"><%= @vehicle.model %></dd>
+
+        <dt class="col-sm-3">年式:</dt>
+        <dd class="col-sm-9"><%= @vehicle.year %></dd>
+
+        <dt class="col-sm-3">車両タイプ:</dt>
+        <dd class="col-sm-9"><%= I18n.t("activerecord.attributes.vehicle.vehicle_types.#{@vehicle.vehicle_type}") %></dd>
+
+        <dt class="col-sm-3">現在の走行距離:</dt>
+        <dd class="col-sm-9"><%= number_with_delimiter(@vehicle.current_mileage) %> km</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="mt-3">
+    <%= link_to '戻る', root_path, class: 'btn btn-secondary' %>
+  </div>
+</div>

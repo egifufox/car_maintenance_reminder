@@ -1,10 +1,31 @@
 ja:
   activerecord:
     models:
-      user: ユーザー
+      vehicle: "車両"
+      manufacturer: "メーカー"
     attributes:
-      user:
-        email: メールアドレス
-        name: 名前
-        password: パスワード
-        password_confirmation: パスワード確認
+      vehicle:
+        manufacturer: "メーカー"
+        vehicle_name: "車両名"
+        model: "車種名"
+        year: "年式"
+        vehicle_type: "車両タイプ"
+        vehicle_types:
+          normal: "ガソリン車"
+          hybrid: "ハイブリッド車"
+        current_mileage: "現在の走行距離"
+      manufacturer:
+        name: "メーカー名"
+    errors:
+      messages:
+        blank: を入力してください
+        not_a_number: を数値で入力してください
+      models:
+        vehicle:
+          attributes:
+            year:
+              blank: を入力してください
+              not_a_number: を数値で入力してください
+            current_mileage:
+              blank: を入力してください
+              not_a_number: を数値で入力してください
