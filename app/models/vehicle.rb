@@ -2,6 +2,7 @@ class Vehicle < ApplicationRecord
   # アソシエーション
   belongs_to :user
   belongs_to :manufacturer
+  has_many :oil_change_records, dependent: :destroy
 
   # enum
   enum vehicle_type: { normal: 0, hybrid: 1 }
