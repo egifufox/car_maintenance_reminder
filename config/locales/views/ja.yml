@@ -35,6 +35,7 @@ ja:
       success: "%{item}を登録しました"
     show:
       title: 車両詳細
+      oil_change_record: オイル交換記録を追加
       manufacturer: メーカー
       vehicle_name: 車両名
       model: 車種名
@@ -56,3 +57,10 @@ ja:
       year: 年式
       year_unit: 年
       show_details: 詳細を見る
+  oil_change_records:
+    new:
+      title: "オイル交換記録を追加"
+      back: "車両詳細に戻る"
+    create:
+      success: "オイル交換記録を登録しました"
+      failure: "オイル交換記録を登録出来ませんでした"

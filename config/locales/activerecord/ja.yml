@@ -3,6 +3,7 @@ ja:
     models:
       vehicle: "車両"
       manufacturer: "メーカー"
+      oil_change_record: "オイル交換記録"  # ← 追加
     attributes:
       vehicle:
         manufacturer: "メーカー"
@@ -16,6 +17,10 @@ ja:
         current_mileage: "現在の走行距離"
       manufacturer:
         name: "メーカー名"
+      oil_change_record:  # ← 追加(単数形に注意!)
+        changed_at: "交換実施日"
+        mileage: "交換時の走行距離"
+        memo: "メモ"
     errors:
       messages:
         blank: を入力してください
