@@ -1,4 +1,16 @@
 ja:
+  static_pages:
+    top:
+      app_name: Mechanicare
+      login: ログイン
+      car_image_alt: 車のイメージ
+      hero_title: オイル交換を忘れない
+      hero_subtitle: 車のメンテナンス記録を簡単に管理
+      features_title: Mechanicareの特徴
+      feature_1: オイル交換時期を自動で通知
+      feature_2: メンテナンス履歴を記録
+      feature_3: 車両情報を一元管理
+      copyright: "&copy; %{year} Mechanicare"
   helpers:
     submit:
       create: 登録
@@ -6,6 +18,7 @@ ja:
       update: 更新
   
   defaults:
+    select_prompt: 選択してください
     flash_message:
       created: "%{item}を作成しました"
       not_created: "%{item}を作成出来ませんでした"
@@ -17,11 +30,29 @@ ja:
   vehicles:
     new:
       title: "車両登録"
+      back: 一覧に戻る
     create:
       success: "%{item}を登録しました"
     show:
-      title: "車両詳細"
+      title: 車両詳細
+      manufacturer: メーカー
+      vehicle_name: 車両名
+      model: 車種名
+      year: 年式
+      vehicle_type: 車両タイプ
+      current_mileage: 現在の走行距離
+      mileage_unit: km
+      back: 一覧に戻る
+      edit: 編集
+      delete: 削除
+      delete_confirm: 本当に削除しますか？
     edit:
       title: "車両編集"
+      back: "詳細に戻る"
     index:
-      title: "車両一覧"
+      title: 車両一覧
+      manufacturer: メーカー
+      model: 車種
+      year: 年式
+      year_unit: 年
+      show_details: 詳細を見る

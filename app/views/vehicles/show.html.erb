@@ -1,31 +1,36 @@
 <div class="container mt-4">
-  <h1><%= t('vehicles.show.title') %></h1>
+  <h1><%= t('.title') %></h1>
 
   <div class="card mt-3">
     <div class="card-body">
       <dl class="row">
-        <dt class="col-sm-3">メーカー:</dt>
+        <dt class="col-sm-3"><%= t('.manufacturer') %>:</dt>
         <dd class="col-sm-9"><%= @vehicle.manufacturer.name %></dd>
 
-        <dt class="col-sm-3">車両名:</dt>
+        <dt class="col-sm-3"><%= t('.vehicle_name') %>:</dt>
         <dd class="col-sm-9"><%= @vehicle.vehicle_name %></dd>
 
-        <dt class="col-sm-3">車種名:</dt>
+        <dt class="col-sm-3"><%= t('.model') %>:</dt>
         <dd class="col-sm-9"><%= @vehicle.model %></dd>
 
-        <dt class="col-sm-3">年式:</dt>
+        <dt class="col-sm-3"><%= t('.year') %>:</dt>
         <dd class="col-sm-9"><%= @vehicle.year %></dd>
 
-        <dt class="col-sm-3">車両タイプ:</dt>
+        <dt class="col-sm-3"><%= t('.vehicle_type') %>:</dt>
         <dd class="col-sm-9"><%= I18n.t("activerecord.attributes.vehicle.vehicle_types.#{@vehicle.vehicle_type}") %></dd>
 
-        <dt class="col-sm-3">現在の走行距離:</dt>
+        <dt class="col-sm-3"><%= t('.current_mileage') %>:</dt>
         <dd class="col-sm-9"><%= number_with_delimiter(@vehicle.current_mileage) %> km</dd>
       </dl>
     </div>
   </div>
 
   <div class="mt-3">
-    <%= link_to '戻る', root_path, class: 'btn btn-secondary' %>
+    <%= link_to t('.edit'), edit_vehicle_path(@vehicle), class: 'btn btn-warning' %>
+    <%= button_to t('.delete'), vehicle_path(@vehicle), 
+        method: :delete, 
+        data: { turbo_confirm: t('.delete_confirm') }, 
+        class: 'btn btn-danger' %>
+    <%= link_to t('.back'), vehicles_path, class: 'btn btn-secondary' %>
   </div>
 </div>
