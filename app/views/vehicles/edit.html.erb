@@ -1,0 +1,9 @@
+<div class="container mt-5">
+  <h1><%= t('vehicles.edit.title') %></h1>
+
+  <%= render 'form', vehicle: @vehicle %>
+
+  <div class="mt-3">
+    <%= link_to t('.back'), vehicle_path(@vehicle), class: 'btn btn-secondary' %>
+  </div>
+</div>

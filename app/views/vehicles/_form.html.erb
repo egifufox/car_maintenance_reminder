@@ -1,0 +1,55 @@
+<%= form_with(model: vehicle, local: true) do |form| %>
+  <% if vehicle.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= vehicle.errors.count %>件のエラーがあります</h4>
+      <ul>
+        <% vehicle.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :manufacturer_id, t('activerecord.attributes.vehicle.manufacturer'), class: 'form-label' %>
+    <%= form.collection_select :manufacturer_id, @manufacturers, :id, :name, 
+        { prompt: t('defaults.select_prompt') }, 
+        { class: 'form-select' } %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :vehicle_name, t('activerecord.attributes.vehicle.vehicle_name'), class: 'form-label' %>
+    <%= form.text_field :vehicle_name, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :model, t('activerecord.attributes.vehicle.model'), class: 'form-label' %>
+    <%= form.text_field :model, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :year, t('activerecord.attributes.vehicle.year'), class: 'form-label' %>
+    <%= form.number_field :year, class: 'form-control' %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :vehicle_type, t('activerecord.attributes.vehicle.vehicle_type'), class: 'form-label' %>
+    <div class="form-check">
+      <%= form.radio_button :vehicle_type, 'normal', id: 'vehicle_type_normal', class: 'form-check-input' %>
+      <%= form.label :vehicle_type_normal, t('activerecord.attributes.vehicle.vehicle_types.normal'), class: 'form-check-label' %>
+    </div>
+    <div class="form-check">
+      <%= form.radio_button :vehicle_type, 'hybrid', id: 'vehicle_type_hybrid', class: 'form-check-input' %>
+      <%= form.label :vehicle_type_hybrid, t('activerecord.attributes.vehicle.vehicle_types.hybrid'), class: 'form-check-label' %>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :current_mileage, t('activerecord.attributes.vehicle.current_mileage'), class: 'form-label' %>
+    <%= form.number_field :current_mileage, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>

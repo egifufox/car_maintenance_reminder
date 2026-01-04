@@ -1,59 +1,9 @@
-<div class="container">
+<div class="container mt-5">
   <h1><%= t('vehicles.new.title') %></h1>
 
-  <%= form_with(model: @vehicle) do |form| %>
-    <% if @vehicle.errors.any? %>
-      <div class="alert alert-danger">
-        <h4><%= @vehicle.errors.count %>件のエラーがあります</h4>
-        <ul>
-          <% @vehicle.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
+  <%= render 'form', vehicle: @vehicle %>
 
-    <div class="mb-3">
-      <%= form.label :manufacturer_id, 'メーカー', class: 'form-label' %>
-      <%= form.collection_select :manufacturer_id, @manufacturers, :id, :name, 
-          { prompt: 'メーカーを選択してください' }, 
-          { class: 'form-select' } %>
-    </div>
-
-    <div class="mb-3">
-      <%= form.label :vehicle_name, '車両名', class: 'form-label' %>
-      <%= form.text_field :vehicle_name, class: 'form-control' %>
-    </div>
-
-    <div class="mb-3">
-      <%= form.label :model, '車種名', class: 'form-label' %>
-      <%= form.text_field :model, class: 'form-control' %>
-    </div>
-
-    <div class="mb-3">
-      <%= form.label :year, '年式', class: 'form-label' %>
-      <%= form.number_field :year, class: 'form-control' %>
-    </div>
-
-    <div class="mb-3">
-      <%= form.label :vehicle_type, '車両タイプ', class: 'form-label' %>
-      <div>
-        <%= form.radio_button :vehicle_type, 'normal', id: 'vehicle_type_normal', class: 'form-check-input' %>
-        <%= form.label :vehicle_type_normal, '通常車', class: 'form-check-label' %>
-      </div>
-      <div>
-        <%= form.radio_button :vehicle_type, 'hybrid', id: 'vehicle_type_hybrid', class: 'form-check-input' %>
-        <%= form.label :vehicle_type_hybrid, 'ハイブリッド車', class: 'form-check-label' %>
-      </div>
-    </div>
-
-    <div class="mb-3">
-      <%= form.label :current_mileage, '現在の走行距離', class: 'form-label' %>
-      <%= form.number_field :current_mileage, class: 'form-control' %>
-    </div>
-
-    <div class="actions">
-      <%= form.submit class: 'btn btn-primary' %>
-    </div>
-  <% end %>
+  <div class="mt-3">
+    <%= link_to t('vehicles.new.back'), vehicles_path, class: 'btn btn-secondary' %>
+  </div>
 </div>

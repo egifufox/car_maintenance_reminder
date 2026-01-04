@@ -1,0 +1,21 @@
+<div class="container pt-5">
+  <h1><%= t('.title') %></h1>
+  
+  <div class="row">
+    <% @vehicles.each do |vehicle| %>
+      <div class="col-md-6 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"><%= vehicle.vehicle_name %></h5>
+            <p class="card-text">
+              <%= t('.manufacturer') %>: <%= vehicle.manufacturer.name %><br>
+              <%= t('.model') %>: <%= vehicle.model %><br>
+              <%= t('.year') %>: <%= vehicle.year %><%= t('.year_unit') %>
+            </p>
+            <%= link_to t('.show_details'), vehicle_path(vehicle), class: 'btn btn-primary' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

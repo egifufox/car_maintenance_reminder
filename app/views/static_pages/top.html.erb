@@ -1,31 +1,28 @@
 <div class="top-page">
   <!-- ヘッダー -->
   <header class="header">
-    <h1 class="logo">Mechanicare</h1>
-    <nav>
-      <a href="/login" class="btn-login">ログイン</a>
-    </nav>
+    <h1 class="logo"><%= t('.app_name') %></h1>
   </header>
 
   <!-- メインビジュアル -->
   <section class="hero">
-    <%= image_tag 'car_image.jpg', alt: '車のイメージ', class: 'hero-image' %>
-    <h2>オイル交換を忘れない</h2>
-    <p>車のメンテナンス記録を簡単に管理</p>
+    <%= image_tag 'car_image.jpg', alt: t('.car_image_alt'), class: 'hero-image' %>
+    <h2><%= t('.hero_title') %></h2>
+    <p><%= t('.hero_subtitle') %></p>
   </section>
 
   <!-- アプリの説明 -->
   <section class="features">
-    <h3>Mechanicareの特徴</h3>
+    <h3><%= t('.features_title') %></h3>
     <ul>
-      <li>オイル交換時期を自動で通知</li>
-      <li>メンテナンス履歴を記録</li>
-      <li>車両情報を一元管理</li>
+      <li><%= t('.feature_1') %></li>
+      <li><%= t('.feature_2') %></li>
+      <li><%= t('.feature_3') %></li>
     </ul>
   </section>
 
   <!-- フッター -->
   <footer class="footer">
-    <p>&copy; 2025 Mechanicare</p>
+    <p>&copy; <%= Time.current.year %><%= t('.app_name') %></p>
   </footer>
 </div>

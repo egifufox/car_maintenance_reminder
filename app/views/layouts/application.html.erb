@@ -7,24 +7,48 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-
-    <%= link_to '車両登録', new_vehicle_path %>
-
-    <% if user_signed_in? %>
-      <p>ようこそ、<%= current_user.email %>さん</p>
-      <%= button_to 'ログアウト', destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%= link_to 'ログイン', new_user_session_path %>
-      <%= link_to '新規登録', new_user_registration_path %>
-    <% end %>
   </head>
 
   <body>
-     <!-- フラッシュメッセージを表示 -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <%= link_to 'CarMaintenanceReminder', root_path, class: 'navbar-brand' %>
+        
+        <div class="collapse navbar-collapse">
+          <ul class="navbar-nav ms-auto">
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to '車両一覧', vehicles_path, class: 'nav-link' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to '車両登録', new_vehicle_path, class: 'nav-link' %>
+              </li>
+              <li class="nav-item">
+                <span class="nav-link">ようこそ、<%= current_user.email %>さん</span>
+              </li>
+              <li class="nav-item">
+                <%= button_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'btn btn-outline-danger' %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to 'ログイン', new_user_session_path, class: 'nav-link' %>
+              </li>
+              <li class="nav-item">
+                <%= link_to '新規登録', new_user_registration_path, class: 'nav-link' %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- フラッシュメッセージを表示 -->
     <div class="container mt-3">
       <%= render 'shared/flash_message' %>
     </div>
 
-    <%= yield %>
+    <div class="container mt-4">
+      <%= yield %>
+    </div>
   </body>
 </html>
