@@ -1,6 +1,9 @@
 <div class="container mt-4">
   <h1><%= t('.title') %></h1>
 
+   <%# オイル交換記録を追加ボタン %>
+  <%= link_to t('.oil_change_record'), new_vehicle_oil_change_record_path(@vehicle), class: 'btn btn-primary' %>
+
   <div class="card mt-3">
     <div class="card-body">
       <dl class="row">
