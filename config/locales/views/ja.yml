@@ -58,6 +58,15 @@ ja:
       year_unit: 年
       show_details: 詳細を見る
   oil_change_records:
+    index:
+      title: "%{vehicle_name}のオイル交換履歴"
+      changed_at: 交換日
+      mileage: 走行距離
+      memo: メモ
+      no_records: まだオイル交換履歴がありません
+      back: 車両詳細に戻る
+      oil_change_record: オイル交換記録を追加
+      mileage_unit: km
     new:
       title: "オイル交換記録を追加"
       back: "車両詳細に戻る"

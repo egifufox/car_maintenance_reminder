@@ -1,6 +1,10 @@
 class OilChangeRecordsController < ApplicationController
   before_action :set_vehicle
 
+  def index
+    @oil_change_records = @vehicle.oil_change_records.order(changed_at: :desc)
+  end
+
   def new
     @oil_change_record = @vehicle.oil_change_records.build
   end

@@ -1,0 +1,32 @@
+<div class="container">
+  <h1><%= t('.title', vehicle_name: @vehicle.vehicle_name) %></h1>
+
+  <% if @oil_change_records.any? %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th><%= t('.changed_at') %></th>
+          <th><%= t('.mileage') %></th>
+          <th><%= t('.memo') %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @oil_change_records.each do |record| %>
+          <tr>
+            <td><%= l record.changed_at, format: :long %></td>
+            <td><%= number_with_delimiter(record.mileage) %> <%= t('.mileage_unit') %></td>
+            <td><%= record.memo %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p><%= t('.no_records') %></p>
+  </div>
+  <% end %>
+
+  <div class="mt-3">
+    <%= link_to t('.back'), (@vehicle), class: 'btn btn-secondary' %>
+    <%= link_to t('.oil_change_record'), new_vehicle_oil_change_record_path(@vehicle), class: 'btn btn-primary' %>
+  </div>
+</div>
