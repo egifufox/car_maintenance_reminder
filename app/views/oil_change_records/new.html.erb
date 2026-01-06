@@ -20,6 +20,7 @@
       <%= f.text_area :memo, class: 'form-control', rows: 5, placeholder: 'エンジンオイル交換' %>
     </div>
 
+    <%= link_to t('.back'), (@vehicle), class: 'btn btn-secondary' %>
     <%= f.submit class: 'btn btn-primary' %>
   <% end %>
 </div>
