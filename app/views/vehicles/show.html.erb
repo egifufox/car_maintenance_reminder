@@ -1,7 +1,45 @@
 <div class="container mt-4">
   <h1><%= t('.title') %></h1>
 
-   <%# オイル交換記録を追加ボタン %>
+  <%# 計算結果を表示 %>
+  <% if @vehicle.last_oil_change %>
+    <div class="alert alert-info">
+      <h4>次回オイル交換の目安</h4>
+      <ul>
+        <li>
+          <strong>走行距離ベース:</strong> 
+          <% if @vehicle.km_until_next_oil_change > 0 %>
+            あと<%= number_with_delimiter(@vehicle.km_until_next_oil_change) %>km
+          <% else %>
+            <span class="text-danger">
+              <%= number_with_delimiter(@vehicle.km_until_next_oil_change.abs) %>km超過
+            </span>
+          <% end %>
+        </li>
+        <li>
+          <strong>期間ベース:</strong> 
+          <% if @vehicle.days_until_next_oil_change > 0 %>
+            あと<%= @vehicle.days_until_next_oil_change %>日
+          <% else %>
+            <span class="text-danger">
+              <%= @vehicle.days_until_next_oil_change.abs %>日超過
+            </span>
+          <% end %>
+        </li>
+      </ul>
+    
+      <%# 警告表示 %>
+      <% if @vehicle.needs_oil_change_soon? %>
+        <div class="alert alert-danger mt-2">
+          <strong class="text-danger">⚠️ オイル交換の時期が近づいています!</strong>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p>オイル交換履歴を登録してください</p>
+  <% end %>
+
+  <%# オイル交換記録を追加ボタン %>
   <%= link_to t('.oil_change_record'), new_vehicle_oil_change_record_path(@vehicle), class: 'btn btn-primary' %>
   <%= link_to 'オイル交換履歴を見る', vehicle_oil_change_records_path(@vehicle), class: 'btn btn-info' %>
 
