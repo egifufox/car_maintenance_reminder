@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 # Manufacturerのシードデータ
-manufacturers = ['トヨタ', 'ホンダ', '日産', 'マツダ', 'スズキ', 'ダイハツ', 'スバル']
+manufacturers = ['トヨタ', 'ホンダ', '日産', 'マツダ', 'スズキ', 'ダイハツ', 'スバル', '三菱']
 
 manufacturers.each do |name|
   Manufacturer.find_or_create_by!(name: name)
