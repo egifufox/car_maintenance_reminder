@@ -1,26 +1,5 @@
 <%# app/views/oil_change_records/new.html.erb %>
 <div class="container">
-  <h1><%= t('oil_change_records.new.title') %></h1>
-
-  <%= form_with model: @oil_change_record, url: vehicle_oil_change_records_path(@vehicle), local: true do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
-
-    <div class="mb-3">
-      <%= f.label :changed_at, class: 'form-label' %>
-      <%= f.date_field :changed_at, class: 'form-control' %>
-    </div>
-
-    <div class="mb-3">
-      <%= f.label :mileage, class: 'form-label' %>
-      <%= f.number_field :mileage, class: 'form-control', placeholder: '例: 50000' %>
-    </div>
-
-    <div class="mb-3">
-      <%= f.label :memo, class: 'form-label' %>
-      <%= f.text_area :memo, class: 'form-control', rows: 5, placeholder: 'エンジンオイル交換' %>
-    </div>
-
-    <%= link_to t('.back'), (@vehicle), class: 'btn btn-secondary' %>
-    <%= f.submit class: 'btn btn-primary' %>
-  <% end %>
+  <h1><%= t('.title') %></h1>
+  <%= render 'form' %>
 </div>

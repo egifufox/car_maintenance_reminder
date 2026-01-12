@@ -67,9 +67,14 @@ ja:
       back: 車両詳細に戻る
       oil_change_record: オイル交換記録を追加
       mileage_unit: km
+      edit: 編集
+      delete: 削除
+      delete_confirm: 本当に削除しますか？
     new:
       title: "オイル交換記録を追加"
       back: "車両詳細に戻る"
     create:
       success: "オイル交換記録を登録しました"
       failure: "オイル交換記録を登録出来ませんでした"
+    edit:
+      title: "オイル交換記録の編集"
