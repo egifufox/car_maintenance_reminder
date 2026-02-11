@@ -63,6 +63,20 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "car_maintenance_reminder_production"
 
   config.action_mailer.perform_caching = false
+  # メールのホスト情報を設定
+  config.action_mailer.default_url_options = { host: 'car-maintenance-reminder.onrender.com' }
+
+  # メール送信の設定（もし設定していなければ追加）
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    port: 587,
+    domain: 'car-maintenance-reminder.onrender.com',
+    user_name: ENV['MAIL_USERNAME'],
+    password: ENV['MAIL_PASSWORD'],
+    authentication: 'plain',
+    enable_starttls_auto: true
+  }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
