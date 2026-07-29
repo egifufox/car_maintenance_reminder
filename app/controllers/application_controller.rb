@@ -10,4 +10,14 @@ class ApplicationController < ActionController::Base
     # アカウント更新時にnameを許可
     devise_parameter_sanitizer.permit(:account_update, keys: [:name])
   end
+
+  # ログイン後のリダイレクト先
+  def after_sign_in_path_for(resource)
+    vehicles_path  # 車両一覧のパスに変更
+  end
+
+  # サインアップ後のリダイレクト先
+  def after_sign_up_path_for(resource)
+    vehicles_path  # 車両一覧のパスに変更
+  end
 end

@@ -1,0 +1,34 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fw-bold">
+    <span class="navbar-brand" style="margin-left: 120px;">
+      <i class="bi bi-car-front"></i>
+      CarMaintenanceReminder
+    </span>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <%= link_to '車両一覧', vehicles_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to '車両登録', new_vehicle_path, class: "nav-link" %>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto" style="margin-right: 100px;">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">
+            <i class="bi bi-person-circle"></i>
+            <%= current_user.name %>
+          </a>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'ログアウト', destroy_user_session_path, class: "btn btn-outline-light", data: { turbo_method: :delete } %>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>

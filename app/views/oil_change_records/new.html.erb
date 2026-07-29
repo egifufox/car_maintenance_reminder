@@ -1,5 +1,44 @@
-<%# app/views/oil_change_records/new.html.erb %>
+<% content_for(:title, t('.title')) %>
 <div class="container">
-  <h1><%= t('.title') %></h1>
-  <%= render 'form' %>
-</div>
+  <div class="row">
+    <div class="col-lg-12 mt-4">
+      <%= link_to '車両一覧', vehicles_path, class: "link" %> /
+      <%= link_to @vehicle.vehicle_name, vehicle_path(@vehicle), class: "link" %> / 
+      オイル交換記録を追加
+        <h2 class="mt-3">オイル交換記録を追加</h2>
+        <div class="card mt-4">
+          <%= form_with model: @oil_change_record, url: vehicle_oil_change_records_path(@vehicle), local: true do |f| %>
+          
+            <!-- エラーメッセージ -->
+            <%= render 'shared/error_messages', object: f.object %>
+
+            <!-- 交換日 -->
+            <div class="m-3">
+              <%= f.label :changed_at, '交換日' %>
+              <%= f.date_field :changed_at, class: "form-control" %>
+            </div>
+
+            <!-- 年式 -->
+            <div class="m-3">
+              <%= f.label :mileage, '走行距離' %>
+              <%= f.number_field :mileage, class: "form-control", placeholder: "例: 50000" %>
+            </div>
+
+            <!-- メモ -->
+            <div class="m-3">
+              <%= f.label :memo, 'メモ' %>
+              <%= f.text_area :memo, class: "form-control", placeholder: "例: オイルエレメントも同時交換" %>
+            </div>
+
+            <hr>
+
+            <!-- ボタン -->
+            <div class="m-3">
+              <%= f.submit '✓登録する', class: "btn btn-primary" %>
+              <%= link_to '車両詳細に戻る', vehicle_path(@vehicle), class: "btn btn-outline-secondary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>

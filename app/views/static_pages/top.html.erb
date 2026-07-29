@@ -1,28 +1,145 @@
-<div class="top-page">
-  <!-- ヘッダー -->
-  <header class="header">
-    <h1 class="logo"><%= t('.app_name') %></h1>
-  </header>
-
+<div class="min-vh-100 bg-light">
   <!-- メインビジュアル -->
-  <section class="hero">
-    <%= image_tag 'car_image.jpg', alt: t('.car_image_alt'), class: 'hero-image' %>
-    <h2><%= t('.hero_title') %></h2>
-    <p><%= t('.hero_subtitle') %></p>
+  <section class="hero position-relative text-white" style="min-height: 60vh; background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('<%= asset_path('car_image.jpg') %>') center/cover no-repeat;">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center justify-content-center">
+        <div class="col-lg-10 text-center">
+          <span class="badge bg-white text-primary my-3 p-4">車のメンテナンス時期を忘れがちな車オーナーへ</span>
+          <h1 class="display-4 fw-semibold mb-4">
+            大切な車を <span class="text-warning">長く乗るために</span>
+            <br>
+            整備士の知識で適切なタイミングをお知らせ
+          </h1>
+          <p class="lead mb-4">
+            オイル交換や車検の時期を忘れずに管理。
+            <br>
+            整備士の実務経験に基づいた、あなたの車に最適なメンテナンススケジュールを提供します。
+          </p>
+          <div class="d-flex gap-3 justify-content-center">
+            <%= link_to '無料で始める', new_user_registration_path, class: 'btn btn-lg btn-light text-primary' %>
+            <%= link_to 'ログイン', new_user_session_path, class: 'btn btn-lg btn-outline-light' %>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- アプリの説明 -->
-  <section class="features">
-    <h3><%= t('.features_title') %></h3>
-    <ul>
-      <li><%= t('.feature_1') %></li>
-      <li><%= t('.feature_2') %></li>
-      <li><%= t('.feature_3') %></li>
-    </ul>
+  <!-- こんなお悩みありませんか？ -->
+  <section class="py-5 bg-white">
+    <div class="container">
+      <h2 class="text-center mb-5 fw-bold">こんなお悩みありませんか？</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm bg-light">
+            <div class="card-body text-center">
+              <div class="display-4 mb-3">😰</div>
+              <h5 class="card-title">メンテナンス時期を忘れる</h5>
+              <p class="card-text text-muted">「オイル交換、いつやったっけ？」期限切れによるエンジン不調のリスク...</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm bg-light">
+            <div class="card-body text-center">
+              <div class="display-4 mb-3">📊</div>
+              <h5 class="card-title">適切なタイミングがわからない</h5>
+              <p class="card-text text-muted">「タイヤ交換時期がわからない」車種別の最適なタイミングを知りたい...</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm bg-light">
+            <div class="card-body text-center">
+              <div class="display-4 mb-3">💸</div>
+              <h5 class="card-title">複数台の管理が大変</h5>
+              <p class="card-text text-muted">家族の車、仕事用の車など、複数台のメンテナンス管理が煩雑...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- フッター -->
-  <footer class="footer">
-    <p>&copy; <%= Time.current.year %><%= t('.app_name') %></p>
-  </footer>
+  <!-- 使い方はかんたん3ステップ -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-5 fw-bold">使い方はかんたん3ステップ</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+              <span class="badge bg-primary mb-3 p-2">Step 1</span>
+              <h5 class="card-title">車両情報を登録</h5>
+              <p class="card-text text-muted">車種、年式、走行距離を入力するだけで準備完了</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+              <span class="badge bg-primary mb-3 p-2">Step 2</span>
+              <h5 class="card-title">前回のメンテナンス履歴を入力</h5>
+              <p class="card-text text-muted">オイル交換、タイヤ交換などの実施日を記録</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body text-center">
+              <span class="badge bg-primary mb-3 p-2">Step 3</span>
+              <h5 class="card-title">リマインドを受け取る</h5>
+              <p class="card-text text-muted">次回のメンテナンス時期が近づくと自動でお知らせ</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- サービスの特徴 -->
+  <section class="py-5 bg-white">
+    <div class="container">
+      <h2 class="text-center mb-5 fw-bold">整備士の知識に基づく3つの特徴</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm bg-light">
+            <div class="card-body text-center">
+              <div class="display-4 mb-3">🔧</div>
+              <h5 class="card-title">整備士の実務経験</h5>
+              <p class="card-text text-muted">車種別、使用環境別の最適なタイミングを提案</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm bg-light">
+            <div class="card-body text-center">
+              <div class="display-4 mb-3">📧</div>
+              <h5 class="card-title">多様なリマインド方式</h5>
+              <p class="card-text text-muted">メール、LINE、アプリ内通知で忘れない仕組み</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100 shadow-sm bg-light">
+            <div class="card-body text-center">
+              <div class="display-4 mb-3">📚</div>
+              <h5 class="card-title">教育的要素</h5>
+              <p class="card-text text-muted">なぜそのタイミングなのか、整備士による解説付き</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA（Call To Action）セクション -->
+  <section class="bg-light text-dark py-5">
+    <div class="container">
+      <div class="text-center">
+        <h2 class="display-5 fw-bold mb-4">適切なメンテナンスで愛車を長く乗ろう</h2>
+        <p class="lead mb-4">整備士の知識で、あなたの車を守ります</p>   
+        <%= link_to '今すぐ無料登録する', new_user_registration_path, class: 'btn btn-lg btn-light text-primary' %> 
+      </div>
+    </div>
+  </section>
 </div>

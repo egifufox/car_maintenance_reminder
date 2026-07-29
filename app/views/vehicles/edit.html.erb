@@ -1,9 +1,82 @@
-<div class="container mt-5">
-  <h1><%= t('vehicles.edit.title') %></h1>
+<% content_for(:title, t('.title')) %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 mt-4">
+      <%= link_to '車両一覧', vehicles_path, class: "link" %> / 車両を編集
+      <h2 class="mt-3">車両を編集</h2>
+      <div class="card mt-4">
+        <%= form_with model: @vehicle, class: "edit_vehicle" do |f| %>
+          
+          <!-- エラーメッセージ -->
+          <% if @vehicle.errors.any? %>
+            <div class="alert alert-danger m-3">
+              <h4><%= @vehicle.errors.count %>件のエラーがあります</h4>
+              <ul>
+                <% @vehicle.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
 
-  <%= render 'form', vehicle: @vehicle %>
+          <!-- メーカー -->
+          <div class="m-3">
+            <%= f.label :manufacturer_id, 'メーカー' %>
+            <%= f.collection_select :manufacturer_id, @manufacturers, :id, :name, 
+                { prompt: '選択してください' }, 
+                { class: 'form-select mt-2' } %>
+          </div>
 
-  <div class="mt-3">
-    <%= link_to t('.back'), vehicle_path(@vehicle), class: 'btn btn-secondary' %>
+          <!-- 車両名 -->
+          <div class="m-3">
+            <%= f.label :vehicle_name, '車両名' %>
+            <%= f.text_field :vehicle_name, class: "form-control mt-2", placeholder: "例: プリウス" %>
+          </div>
+
+          <!-- 型式 -->
+          <div class="m-3">
+            <%= f.label :model, '型式' %>
+            <%= f.text_field :model, class: "form-control mt-2", placeholder: "例: ZVW30" %>
+          </div>
+
+          <!-- 年式 -->
+          <div class="m-3">
+            <%= f.label :year, '年式' %>
+            <%= f.number_field :year, class: "form-control mt-2", placeholder: "例: 2020" %>
+          </div>
+
+          <!-- 車両タイプ -->
+          <div class="m-3">
+            <%= f.label :vehicle_type, '車両タイプ' %>
+            <div class="mt-2">
+              <div class="form-check form-check-inline">
+                <%= f.radio_button :vehicle_type, 'normal', id: 'vehicle_type_normal', class: 'form-check-input' %>
+                <%= f.label :vehicle_type_normal, 'ガソリン車', class: 'form-check-label' %>
+              </div>
+              <div class="form-check form-check-inline">
+                <%= f.radio_button :vehicle_type, 'hybrid', id: 'vehicle_type_hybrid', class: 'form-check-input' %>
+                <%= f.label :vehicle_type_hybrid, 'ハイブリッド車', class: 'form-check-label' %>
+              </div>
+            </div>
+          </div>
+
+          <!-- 現在の走行距離 -->
+          <div class="m-3">
+            <%= f.label :current_mileage, '現在の走行距離' %>
+            <%= f.number_field :current_mileage, class: "form-control mt-2", placeholder: "例: 50000" %>
+            <small class="form-text text-muted">km単位で入力してください</small>
+          </div>
+
+          <hr>
+
+          <!-- ボタン -->
+          <div class="m-3">
+            <%= f.submit '✓更新する', class: "btn btn-primary" %>
+            <%= link_to 'キャンセル', vehicle_path(@vehicle), class: "btn btn-outline-secondary" %>
+          </div>
+
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

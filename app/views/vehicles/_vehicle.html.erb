@@ -1,0 +1,23 @@
+<div class="col-md-6 mb-3">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title"><%= vehicle.vehicle_name %></h5>
+
+       <!-- 車両タイプバッジを追加 -->
+      <div class="mb-2">
+        <% if vehicle.vehicle_type == 'normal' %>
+          <span class="badge text-bg-primary">ガソリン車</span>
+        <% elsif vehicle.vehicle_type == 'hybrid' %>
+          <span class="badge text-bg-success">ハイブリッド車</span>
+        <% end %>
+      </div>
+      
+      <p class="card-text">
+        メーカー: <%= vehicle.manufacturer.name %><br>
+        型式: <%= vehicle.model %><br>
+        年式: <%= vehicle.year %>年
+      </p>
+      <%= link_to '詳細を見る', vehicle_path(vehicle), class: 'btn btn-primary' %>
+    </div>
+  </div>
+</div>

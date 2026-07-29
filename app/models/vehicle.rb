@@ -47,4 +47,10 @@ class Vehicle < ApplicationRecord
     (km_until_next_oil_change.present? && km_until_next_oil_change <= 1000) ||
     (days_until_next_oil_change.present? && days_until_next_oil_change <= 30)
   end
+
+  # 所有者判定
+  def owned_by?(user)
+    self.user_id == user.id
+  end
+
 end

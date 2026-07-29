@@ -2,9 +2,11 @@ class VehiclesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_vehicle, only: [:show, :edit, :update, :destroy]
 
+  VEHICLES_PER_PAGE = 4
+  OIL_CHANGE_RECORDS_PER_PAGE = 4
 
   def index
-    @vehicles = current_user.vehicles.all
+    @vehicles = current_user.vehicles.all.page(params[:vehicles_page]).per(VEHICLES_PER_PAGE)
   end
 
   def new
@@ -25,6 +27,7 @@ class VehiclesController < ApplicationController
   end
 
   def show
+    @oil_change_records = @vehicle.oil_change_records.order(changed_at: :desc).page(params[:oil_change_records_page]).per(OIL_CHANGE_RECORDS_PER_PAGE)
   end
 
   def edit
