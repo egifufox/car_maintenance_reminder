@@ -55,6 +55,10 @@ gem 'enum_help'
 # 国際化・日本語化
 gem 'rails-i18n', '~> 7.0.0'
 
+# ページネーション機能
+gem 'kaminari', '1.2.2'
+gem 'bootstrap5-kaminari-views'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 

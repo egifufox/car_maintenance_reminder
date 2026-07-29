@@ -14,7 +14,7 @@ class OilChangeRecordsController < ApplicationController
     @oil_change_record = @vehicle.oil_change_records.build(oil_change_record_params)
 
     if @oil_change_record.save
-      redirect_to vehicle_oil_change_records_path(@vehicle), success: t('oil_change_records.create.success')
+      redirect_to vehicle_path(@vehicle), success: t('oil_change_records.create.success')
     else
       flash.now[:danger] = t('oil_change_records.create.failure')
       render :new, status: :unprocessable_entity
@@ -26,7 +26,7 @@ class OilChangeRecordsController < ApplicationController
 
   def update
     if @oil_change_record.update(oil_change_record_params)
-      redirect_to vehicle_oil_change_records_path(@vehicle), success: t('defaults.flash_message.updated', item: OilChangeRecord.model_name.human)
+      redirect_to vehicle_path(@vehicle), success: t('defaults.flash_message.updated', item: OilChangeRecord.model_name.human)
     else
       flash.now[:danger] = t('defaults.flash_message.not_updated', item: OilChangeRecord.model_name.human)
       render :edit, status: :unprocessable_entity

@@ -6,4 +6,9 @@ class User < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 255 }
   has_many :vehicles, dependent: :destroy
+
+  # 所有者判定
+  def own?(object)
+    object.user_id == self.id
+  end
 end

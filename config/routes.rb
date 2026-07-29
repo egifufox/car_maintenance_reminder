@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'static_pages#top'
 
   resources :vehicles, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
-    resources :oil_change_records, only: [:index, :new, :create, :edit, :update, :destroy]
+    resources :oil_change_records, only: [:new, :create, :edit, :update, :destroy]
   end
 
   if Rails.env.development?

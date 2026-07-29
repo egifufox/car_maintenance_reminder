@@ -1,5 +1,5 @@
 module ApplicationHelper
-  def flash_class(message_type)
+  def bootstrap_alert_class(message_type)
     case message_type.to_sym
     when :notice
       'success'  # 緑色
@@ -17,4 +17,10 @@ module ApplicationHelper
       'secondary' # グレー
     end
   end
+
+  def page_title(title = '')
+    base_title = 'MechaniCare'
+    title.present? ? "#{title} | #{base_title}" : base_title
+  end
 end
+

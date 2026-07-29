@@ -1,55 +1,40 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>CarMaintenanceReminder</title>
+    <title><%= page_title(yield(:title)) %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+     <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    
+    <!-- Bootstrap Icons（これを追加！） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
   </head>
 
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <%= link_to 'CarMaintenanceReminder', root_path, class: 'navbar-brand' %>
-        
-        <div class="collapse navbar-collapse">
-          <ul class="navbar-nav ms-auto">
-            <% if user_signed_in? %>
-              <li class="nav-item">
-                <%= link_to '車両一覧', vehicles_path, class: 'nav-link' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to '車両登録', new_vehicle_path, class: 'nav-link' %>
-              </li>
-              <li class="nav-item">
-                <span class="nav-link">ようこそ、<%= current_user.email %>さん</span>
-              </li>
-              <li class="nav-item">
-                <%= button_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'btn btn-outline-danger' %>
-              </li>
-            <% else %>
-              <li class="nav-item">
-                <%= link_to 'ログイン', new_user_session_path, class: 'nav-link' %>
-              </li>
-              <li class="nav-item">
-                <%= link_to '新規登録', new_user_registration_path, class: 'nav-link' %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-    </nav>
+  <!-- フッターを下に固定するためにこれしてる -->
+  <body style="display: flex; flex-direction: column; min-height: 100vh;">
+    <% if user_signed_in? %>
+      <%= render 'shared/header' %>
+    <% else %>
+      <%= render 'shared/before_login_header' %>
+    <% end %>
 
     <!-- フラッシュメッセージを表示 -->
     <div class="container mt-3">
       <%= render 'shared/flash_message' %>
     </div>
 
-    <div class="container mt-4">
+    <div class="container mt-4" style="flex: 1;">
       <%= yield %>
     </div>
+
+    <%= render 'shared/footer' %>
   </body>
 </html>
