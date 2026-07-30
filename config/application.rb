@@ -29,5 +29,8 @@ module App
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # エラーページの設定を追加
+    config.exceptions_app = self.routes
   end
 end

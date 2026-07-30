@@ -62,6 +62,9 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "car_maintenance_reminder_production"
 
+  # エラーページを表示する設定
+  config.exceptions_app = self.routes
+
   config.action_mailer.perform_caching = false
   # メールのホスト情報を設定
   config.action_mailer.default_url_options = { host: 'car-maintenance-reminder.onrender.com' }
