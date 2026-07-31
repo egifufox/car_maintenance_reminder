@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class VehiclesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_vehicle, only: [:show, :edit, :update, :destroy]
+  before_action :set_vehicle, only: %i[show edit update destroy]
 
   VEHICLES_PER_PAGE = 4
   OIL_CHANGE_RECORDS_PER_PAGE = 4
@@ -46,11 +48,12 @@ class VehiclesController < ApplicationController
 
   def destroy
     @vehicle.destroy!
-    redirect_to vehicles_path, success: t('defaults.flash_message.deleted', item: Vehicle.model_name.human), status: :see_other
+    redirect_to vehicles_path, success: t('defaults.flash_message.deleted', item: Vehicle.model_name.human),
+                               status: :see_other
   end
 
   private
-  
+
   def set_vehicle
     @vehicle = current_user.vehicles.find(params[:id])
   end

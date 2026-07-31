@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   add_flash_types :success, :danger, :info, :warning
   before_action :configure_permitted_parameters, if: :devise_controller?
@@ -17,13 +19,13 @@ class ApplicationController < ActionController::Base
   end
 
   # ログイン後のリダイレクト先
-  def after_sign_in_path_for(resource)
-    vehicles_path  # 車両一覧のパスに変更
+  def after_sign_in_path_for(_resource)
+    vehicles_path # 車両一覧のパスに変更
   end
 
   # サインアップ後のリダイレクト先
-  def after_sign_up_path_for(resource)
-    vehicles_path  # 車両一覧のパスに変更
+  def after_sign_up_path_for(_resource)
+    vehicles_path # 車両一覧のパスに変更
   end
 
   private

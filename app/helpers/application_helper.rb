@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   def bootstrap_alert_class(message_type)
     case message_type.to_sym
@@ -23,4 +25,3 @@ module ApplicationHelper
     title.present? ? "#{title} | #{base_title}" : base_title
   end
 end
-
