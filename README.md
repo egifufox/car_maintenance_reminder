@@ -1,3 +1,9 @@
+# Car Maintenance Reminder
+
+[![CI](https://github.com/egifufox/car_maintenance_reminder/actions/workflows/ci.yml/badge.svg)](https://github.com/egifufox/car_maintenance_reminder/actions/workflows/ci.yml)
+
+車のメンテナンス管理アプリケーション
+
 # 車両点検リマインダーアプリ「MechaniCare」
 
 ## サービス概要
