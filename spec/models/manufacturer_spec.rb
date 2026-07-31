@@ -5,9 +5,9 @@ require 'rails_helper'
 RSpec.describe Manufacturer, type: :model do
   describe 'バリデーション' do
     before do
-      Manufacturer.destroy_all  # ← テストの前にデータをクリア
+      Manufacturer.destroy_all # ← テストの前にデータをクリア
     end
-    
+
     it 'name が必須であること' do
       manufacturer = build(:manufacturer, name: nil)
       expect(manufacturer).to be_invalid
