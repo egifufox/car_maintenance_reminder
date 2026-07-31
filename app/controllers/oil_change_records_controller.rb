@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class OilChangeRecordsController < ApplicationController
   before_action :set_vehicle
-  before_action :set_oil_change_record, only: [:edit, :update, :destroy]
+  before_action :set_oil_change_record, only: %i[edit update destroy]
 
   def index
     @oil_change_records = @vehicle.oil_change_records.order(changed_at: :desc)
@@ -21,12 +23,12 @@ class OilChangeRecordsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @oil_change_record.update(oil_change_record_params)
-      redirect_to vehicle_path(@vehicle), success: t('defaults.flash_message.updated', item: OilChangeRecord.model_name.human)
+      redirect_to vehicle_path(@vehicle),
+                  success: t('defaults.flash_message.updated', item: OilChangeRecord.model_name.human)
     else
       flash.now[:danger] = t('defaults.flash_message.not_updated', item: OilChangeRecord.model_name.human)
       render :edit, status: :unprocessable_entity
@@ -35,7 +37,8 @@ class OilChangeRecordsController < ApplicationController
 
   def destroy
     @oil_change_record.destroy!
-    redirect_to vehicle_oil_change_records_path(@vehicle), success: t('defaults.flash_message.deleted', item: OilChangeRecord.model_name.human), status: :see_other
+    redirect_to vehicle_oil_change_records_path(@vehicle),
+                success: t('defaults.flash_message.deleted', item: OilChangeRecord.model_name.human), status: :see_other
   end
 
   private

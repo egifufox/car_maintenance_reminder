@@ -1,0 +1,36 @@
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'bin/**/*'
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Max: 80
+  Exclude:
+    - 'spec/**/*'
+
+# メソッド名や変数名に数字を含めることを許可
+Naming/VariableNumber:
+  Enabled: false
+
+# メソッドの複雑度チェックを緩和
+Metrics/AbcSize:
+  Max: 20  # デフォルト17 → 20に緩和
+
+# 1行の文字数制限を緩和
+Layout/LineLength:
+  Max: 150  # デフォルト120 → 150に緩和
+
+# メソッドの行数制限を緩和
+Metrics/MethodLength:
+  Max: 20  # デフォルト10 → 20に緩和
+
+# 重複した条件分岐のチェックを無効化
+Lint/DuplicateBranch:
+  Enabled: false
