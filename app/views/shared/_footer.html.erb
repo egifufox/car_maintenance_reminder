@@ -3,6 +3,11 @@
     <div class='row'>
       <div class='text-white text-center mt-2'>
         <p>&copy; <%= Time.current.year %> CarMaintenanceReminder. All rights reserved.</p>
+        <nav class="mt-2 mb-3">
+          <%= link_to '利用規約', terms_path, class: 'text-white text-decoration-none mx-2 hover-opacity' %>
+          <span class="text-white">|</span>
+          <%= link_to 'プライバシーポリシー', privacy_path, class: 'text-white text-decoration-none mx-2 hover-opacity' %>
+        </nav>
       </div>
     </div>
   </div>
