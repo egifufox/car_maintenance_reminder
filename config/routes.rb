@@ -17,4 +17,7 @@ Rails.application.routes.draw do
   # 利用規約・プライバシーポリシー
   get 'terms', to: 'pages#terms'
   get 'privacy', to: 'pages#privacy'
+
+  # 利用規約・プライバシーポリシー
+  get 'guide', to: 'pages#guide'
 end

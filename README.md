@@ -1,4 +1,4 @@
-# Car Maintenance Reminder
+# MechaniCare
 
 [![CI](https://github.com/egifufox/car_maintenance_reminder/actions/workflows/ci.yml/badge.svg)](https://github.com/egifufox/car_maintenance_reminder/actions/workflows/ci.yml)
 

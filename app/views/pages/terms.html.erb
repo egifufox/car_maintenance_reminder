@@ -1,47 +1,71 @@
 <div class="container">
-  <h1>利用規約</h1>
-  
-  <p>
-    本サービス「CarMaintenanceReminder」（以下「本サービス」）をご利用いただくにあたり、
-    以下の利用規約（以下「本規約」）に同意いただく必要があります。
-  </p>
-
-  <section>
-    <h2>第1条（禁止事項）</h2>
-    <p>本サービスの利用にあたり、以下の行為を禁止します。</p>
-    <ul>
-      <li>法令または公序良俗に違反する行為</li>
-      <li>本サービスの運営を妨害する行為</li>
-      <li>不正アクセスをし、またはこれを試みる行為</li>
-      <li>他のユーザーに迷惑をかける行為</li>
-      <li>その他、運営者が不適切と判断する行為</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>第2条（免責事項）</h2>
-    <p>
-      本サービスは個人によって運営されており、
-      サービスの内容や動作について保証するものではありません。
-      本サービスの利用によって生じた損害について、
-      運営者は一切の責任を負いません。
+  <!-- タイトル -->
+  <div class="mb-4">
+    <h1 class="h3 mb-2">利用規約</h1>
+    <p class="text-muted mb-0">
+      本サービス「MechaniCare」（以下「本サービス」）をご利用いただくにあたり、以下の利用規約（以下「本規約」）に同意いただく必要があります。
     </p>
-  </section>
+  </div>
 
-  <section>
-    <h2>第3条（個人情報の取扱い）</h2>
-    <p>
-      本サービスで取得した個人情報は、プライバシーポリシーに従い適切に管理します。
-    </p>
-  </section>
+  <!-- 第1条（禁止事項） -->
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">第1条（禁止事項）</h5>
+      <p class="card-text text-muted mb-2">
+        本サービスの利用にあたり、以下の行為を禁止します。
+      </p>
+      <ul class="text-muted mb-0">
+        <li>法令または公序良俗に違反する行為</li>
+        <li>本サービスの運営を妨害する行為</li>
+        <li>不正アクセスをし、またはこれを試みる行為</li>
+        <li>他のユーザーに迷惑をかける行為</li>
+        <li>その他、運営者が不適切と判断する行為</li>
+      </ul>
+    </div>
+  </div>
 
-  <section>
-    <h2>第4条（規約の変更）</h2>
-    <p>
-      運営者は、必要に応じて本規約を変更することがあります。
-      変更後の規約は、本サービス上に掲載した時点で効力を生じます。
-    </p>
-  </section>
+  <!-- 第2条（免責事項） -->
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">第2条（免責事項）</h5>
+      <p class="card-text text-muted mb-0">
+        本サービスは個人によって運営されており、サービスの内容や動作について保証するものではありません。本サービスの利用によって生じた損害について、運営者は一切の責任を負いません。
+      </p>
+    </div>
+  </div>
 
-  <p class="mt-4 text-end">制定日：<%= Time.current.year %>年<%= Time.current.month %>月<%= Time.current.day %>日</p>
+  <!-- 第3条（個人情報の取扱い） -->
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">第3条（個人情報の取扱い）</h5>
+      <p class="card-text text-muted mb-0">
+        本サービスで取得した個人情報は、プライバシーポリシーに従い適切に管理します。詳細は<%= link_to "プライバシーポリシー", privacy_path %>をご確認ください。
+      </p>
+    </div>
+  </div>
+
+  <!-- 第4条（規約の変更） -->
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">第4条（規約の変更）</h5>
+      <p class="card-text text-muted mb-0">
+        運営者は、必要に応じて本規約を変更することがあります。変更後の規約は、本サービス上に掲載した時点で効力を生じます。
+      </p>
+    </div>
+  </div>
+
+  <!-- 第5条（準拠法・裁判管轄） -->
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">第5条（準拠法・裁判管轄）</h5>
+      <p class="card-text text-muted mb-0">
+        本規約の解釈にあたっては、日本法を準拠法とします。本サービスに関して紛争が生じた場合には、運営者の所在地を管轄する裁判所を専属的合意管轄とします。
+      </p>
+    </div>
+  </div>
+
+  <!-- 制定日 -->
+  <div class="text-end text-muted mb-3">
+    <small>制定日：<%= Time.current.year %>年<%= Time.current.month %>月<%= Time.current.day %>日</small>
+  </div>
 </div>
