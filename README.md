@@ -60,6 +60,7 @@ https://car-maintenance-reminder.onrender.com
 - ✅ 使い方ページ
 - ✅ CI/CD環境（GitHub Actions）
 - ✅ コード品質管理（Rubocop）
+- ✅ 静的OGP設定
 
 ### **今後実装予定の機能**
 - [ ] パスワードリセット機能
@@ -68,7 +69,6 @@ https://car-maintenance-reminder.onrender.com
 - [ ] ダッシュボード機能（今月やるべきメンテナンス一覧）
 - [ ] 車種別メンテナンス推奨項目
 - [ ] Googleログイン機能
-- [ ] 静的OGP設定
 - [ ] 独自ドメイン設定
 
 ## 使用技術
