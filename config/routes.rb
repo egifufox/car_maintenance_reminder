@@ -18,6 +18,6 @@ Rails.application.routes.draw do
   get 'terms', to: 'pages#terms'
   get 'privacy', to: 'pages#privacy'
 
-  # 利用規約・プライバシーポリシー
+  # 使い方ページ
   get 'guide', to: 'pages#guide'
 end
