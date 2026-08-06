@@ -57,10 +57,4 @@ Rails.application.configure do
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
-
-  # ファイルの最後に以下を追加
-  config.before_initialize do
-    config.eager_load_paths = config.eager_load_paths.dup
-  end
-
 end
