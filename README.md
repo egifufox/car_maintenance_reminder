@@ -74,7 +74,7 @@ https://car-maintenance-reminder.onrender.com
 ## 使用技術
 ### **バックエンド**
 - Ruby 3.1.4
-- Ruby on Rails 7.1.0
+- Ruby on Rails 7.0.10
 - PostgreSQL 14
 
 ### **フロントエンド**
