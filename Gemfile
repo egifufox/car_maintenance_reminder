@@ -61,6 +61,10 @@ gem 'rails-i18n', '~> 7.0.0'
 gem 'bootstrap5-kaminari-views'
 gem 'kaminari', '1.2.2'
 
+# OAuth 認証
+gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
