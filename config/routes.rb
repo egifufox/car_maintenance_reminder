@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
+  # Devise のルーティング(OmniAuth コールバックコントローラーを指定)
+  devise_for :users, controllers: {
+    omniauth_callbacks: 'users/omniauth_callbacks'
+  }
+
   root 'static_pages#top'
 
   resources :vehicles, only: [:index, :new, :create, :show, :edit, :update, :destroy] do

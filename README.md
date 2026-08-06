@@ -61,6 +61,7 @@ https://car-maintenance-reminder.onrender.com
 - ✅ CI/CD環境（GitHub Actions）
 - ✅ コード品質管理（Rubocop）
 - ✅ 静的OGP設定
+- ✅ Googleログイン機能
 
 ### **今後実装予定の機能**
 - [ ] パスワードリセット機能
@@ -68,7 +69,6 @@ https://car-maintenance-reminder.onrender.com
 - [ ] メール通知機能（オイル交換時期のリマインド）
 - [ ] ダッシュボード機能（今月やるべきメンテナンス一覧）
 - [ ] 車種別メンテナンス推奨項目
-- [ ] Googleログイン機能
 - [ ] 独自ドメイン設定
 
 ## 使用技術
