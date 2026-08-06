@@ -62,6 +62,7 @@ gem 'bootstrap5-kaminari-views'
 gem 'kaminari', '1.2.2'
 
 # OAuth 認証
+gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 
@@ -73,6 +74,9 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
   gem 'rspec-rails'
+
+  # 環境変数を管理
+  gem 'dotenv-rails'
 end
 
 group :development do
