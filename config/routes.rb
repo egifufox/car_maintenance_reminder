@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  # 開発環境でのみメール確認画面を表示
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
   # Devise のルーティング(OmniAuth コールバックコントローラーを指定)
   devise_for :users, controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks'
@@ -8,10 +11,6 @@ Rails.application.routes.draw do
 
   resources :vehicles, only: [:index, :new, :create, :show, :edit, :update, :destroy] do
     resources :oil_change_records, only: [:new, :create, :edit, :update, :destroy]
-  end
-
-  if Rails.env.development?
-    mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
 
   # エラーページのルーティング
