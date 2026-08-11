@@ -1,7 +1,7 @@
 <% content_for(:title, t('.title')) %>
 <div class="container">
   <div class="row justify-content-center">
-    <div class=" col-md-5 col-lg-3">
+    <div class="col-md-5 col-lg-3">
       <div class="card">
         <div class="card-body"> 
           <h1 class="card-title text-center">ログイン</h1>
@@ -43,9 +43,13 @@
             </div>
           <% end %>
  
-          <div class='text-center mt-2'>
+          <div class='text-center mt-3'>
             <%= link_to 'アカウントをお持ちでない方はこちら', new_user_registration_path, class: "link" %>
           </div>                
+
+          <div class='text-center mt-3'>
+            <%= link_to 'パスワードをお忘れの方はこちら', new_user_password_path, class: "link" %>
+          </div>
         </div>
       </div>
     </div>

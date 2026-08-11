@@ -71,6 +71,8 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = { host: ENV['MAILER_HOST'], protocol: 'https' }
+
+  config.action_mailer.default_options = { from: ENV['MAILER_FROM_ADDRESS'] || 'noreply@car-maintenance-reminder.onrender.com' }
   
   config.action_mailer.smtp_settings = {
     address: 'smtp.sendgrid.net',
