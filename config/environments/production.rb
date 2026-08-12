@@ -71,18 +71,18 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_url_options = { host: ENV['MAILER_HOST'], protocol: 'https' }
+  config.action_mailer.default_url_options = { host: ENV['MAILER_HOST'] }
 
   config.action_mailer.default_options = { from: 'onboarding@resend.dev' }
   
   config.action_mailer.smtp_settings = {
-    address: 'smtp.resend.com',
+    address: 'smtp.gmail.com',
     port: 587,
-    domain: ENV['MAILER_HOST'],
-    user_name: 'resend',
-    password: ENV['RESEND_API_KEY'],
-    authentication: :plain,
-    enable_starttls_auto: true
+    domain: 'gmail.com',
+  user_name: ENV['GMAIL_USERNAME'],
+  password: ENV['GMAIL_PASSWORD'],
+  authentication: :plain,
+  enable_starttls_auto: true
   }
 
   # Ignore bad email addresses and do not raise email delivery errors.
