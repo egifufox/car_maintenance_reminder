@@ -70,16 +70,17 @@ Rails.application.configure do
   # メール送信の設定
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_url_options = { host: ENV['MAILER_HOST'], protocol: 'https' }
 
-  config.action_mailer.default_options = { from: ENV['MAILER_FROM_ADDRESS'] || 'noreply@car-maintenance-reminder.onrender.com' }
+  config.action_mailer.default_options = { from: 'onboarding@resend.dev' }
   
   config.action_mailer.smtp_settings = {
-    address: 'smtp.sendgrid.net',
+    address: 'smtp.resend.com',
     port: 587,
     domain: ENV['MAILER_HOST'],
-    user_name: 'apikey',
-    password: ENV['SENDGRID_API_KEY'],
+    user_name: 'resend',
+    password: ENV['RESEND_API_KEY'],
     authentication: :plain,
     enable_starttls_auto: true
   }
