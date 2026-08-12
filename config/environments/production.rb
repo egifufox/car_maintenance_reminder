@@ -73,7 +73,7 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_url_options = { host: ENV['MAILER_HOST'] }
 
-  config.action_mailer.default_options = { from: 'onboarding@resend.dev' }
+  config.action_mailer.default_options = { from: ENV['GMAIL_USERNAME'] }
   
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
