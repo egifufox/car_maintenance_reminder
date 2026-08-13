@@ -76,14 +76,14 @@ Rails.application.configure do
   config.action_mailer.default_options = { from: ENV['GMAIL_USERNAME'] }
   
   config.action_mailer.smtp_settings = {
-    address: 'smtp.gmail.com',
-    port: 587,
-    domain: 'gmail.com',
-  user_name: ENV['GMAIL_USERNAME'],
-  password: ENV['GMAIL_PASSWORD'],
+  address: 'smtp.mailgun.org',
+  port: 587,
+  domain: 'car-maintenance-reminder.onrender.com',
+  user_name: ENV['MAILGUN_USERNAME'],
+  password: ENV['MAILGUN_PASSWORD'],
   authentication: :plain,
   enable_starttls_auto: true
-  }
+}
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
