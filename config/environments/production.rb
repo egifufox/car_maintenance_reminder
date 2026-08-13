@@ -78,7 +78,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
   address: 'smtp.mailgun.org',
   port: 587,
-  domain: 'car-maintenance-reminder.onrender.com',
+  domain: 'sandbox7da01d91686c418b9a0413c3ac4ce364.mailgun.org',
   user_name: ENV['MAILGUN_USERNAME'],
   password: ENV['MAILGUN_PASSWORD'],
   authentication: :plain,
