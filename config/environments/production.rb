@@ -68,21 +68,16 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   # メール送信の設定
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :mailgun
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_url_options = { host: ENV['MAILER_HOST'] }
 
   config.action_mailer.default_options = { from: ENV['GMAIL_USERNAME'] }
   
-  config.action_mailer.smtp_settings = {
-  address: 'smtp.mailgun.org',
-  port: 587,
-  domain: 'sandbox7da01d91686c418b9a0413c3ac4ce364.mailgun.org',
-  user_name: ENV['MAILGUN_USERNAME'],
-  password: ENV['MAILGUN_PASSWORD'],
-  authentication: :plain,
-  enable_starttls_auto: true
+  config.action_mailer.mailgun_settings = {
+  api_key: ENV['MAILGUN_API_KEY'],
+  domain: 'sandbox7da01d91686c418b9a0413c3ac4ce364.mailgun.org'
 }
 
   # Ignore bad email addresses and do not raise email delivery errors.
