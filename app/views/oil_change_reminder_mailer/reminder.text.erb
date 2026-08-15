@@ -1,0 +1,17 @@
+こんにちは、<%= @user.name %>さん
+
+<%= @vehicle.vehicle_name %> のオイル交換時期が近づいています。
+
+次回交換時期:
+<% if @km_until_next_oil_change.present? %>
+- 走行距離ベース: あと<%= @km_until_next_oil_change %> km
+<% end %>
+<% if @days_until_next_oil_change.present? %>
+- 期間ベース: あと<%= @days_until_next_oil_change %>日
+<% end %>
+
+早めのメンテナンスをおすすめします!
+
+車両詳細を確認する: <%= vehicle_url(@vehicle) %>
+
+MechaniCare
