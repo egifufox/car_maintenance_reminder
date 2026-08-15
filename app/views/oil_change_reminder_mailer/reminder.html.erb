@@ -1,0 +1,21 @@
+<h1>こんにちは、<%= @user.name %>さん</h1>
+
+<p><strong><%= @vehicle.vehicle_name %></strong> のオイル交換時期が近づいています。</p>
+
+<h2>次回交換時期</h2>
+<ul>
+  <% if @km_until_next_oil_change.present? %>
+    <li>走行距離ベース: あと<strong><%= @km_until_next_oil_change %> km</strong></li>
+  <% end %>
+  <% if @days_until_next_oil_change.present? %>
+    <li>期間ベース: あと<strong><%= @days_until_next_oil_change %>日</strong></li>
+  <% end %>
+</ul>
+
+<p>早めのメンテナンスをおすすめします!</p>
+
+<p>
+  <%= link_to '車両詳細を確認する', vehicle_url(@vehicle), style: 'display: inline-block; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;' %>
+</p>
+
+<p>MechaniCare</p>

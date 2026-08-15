@@ -21,10 +21,10 @@
 
           <!-- メーカー -->
           <div class="m-3">
-            <%= f.label :manufacturer_id, 'メーカー' %>
+            <%= f.label :manufacturer_id, 'メーカー', for: 'vehicle_manufacturer_id' %>
             <%= f.collection_select :manufacturer_id, @manufacturers, :id, :name, 
-                { prompt: '選択してください' }, 
-                { class: 'form-select mt-2' } %>
+                  { prompt: '選択してください' }, 
+                  { class: 'form-select mt-2', id: 'vehicle_manufacturer_id' } %>
           </div>
 
           <!-- 車両名 -->
@@ -47,15 +47,15 @@
 
           <!-- 車両タイプ -->
           <div class="m-3">
-            <%= f.label :vehicle_type, '車両タイプ' %>
+            <label>車両タイプ</label>
             <div class="mt-2">
               <div class="form-check form-check-inline">
                 <%= f.radio_button :vehicle_type, 'normal', id: 'vehicle_type_normal', class: 'form-check-input' %>
-                <%= f.label :vehicle_type_normal, 'ガソリン車', class: 'form-check-label' %>
+                <%= label_tag 'vehicle_type_normal', 'ガソリン車', class: 'form-check-label' %>
               </div>
               <div class="form-check form-check-inline">
                 <%= f.radio_button :vehicle_type, 'hybrid', id: 'vehicle_type_hybrid', class: 'form-check-input' %>
-                <%= f.label :vehicle_type_hybrid, 'ハイブリッド車', class: 'form-check-label' %>
+                <%= label_tag 'vehicle_type_hybrid', 'ハイブリッド車', class: 'form-check-label' %>
               </div>
             </div>
           </div>
