@@ -51,7 +51,7 @@ module Api
 
         vehicles.each do |vehicle|
           OilChangeReminderMailer.reminder(vehicle.user, vehicle).deliver_now
-          Rails.logger.info "✓ メール送信成功: #{vehicle.user.email} - #{vehicle.name}"
+          Rails.logger.info "✓ メール送信成功: #{vehicle.user.email} - #{vehicle.vehicle_name}"
           sent_count += 1
         rescue StandardError => e
           Rails.logger.error "✗ メール送信失敗: #{vehicle.user.email} - #{e.message}"
