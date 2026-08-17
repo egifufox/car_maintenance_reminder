@@ -23,4 +23,11 @@ Rails.application.routes.draw do
 
   # 使い方ページ
   get 'guide', to: 'pages#guide'
+
+  # Cron用のAPIエンドポイント
+  namespace :api do
+    namespace :v1 do
+      post 'cron/send_oil_change_reminders', to: 'cron#send_oil_change_reminders'
+    end
+  end
 end
