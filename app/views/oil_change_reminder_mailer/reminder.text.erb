@@ -3,11 +3,11 @@
 <%= @vehicle.vehicle_name %> のオイル交換時期が近づいています。
 
 次回交換時期:
-<% if @km_until_next_oil_change.present? %>
-- 走行距離ベース: あと<%= @km_until_next_oil_change %> km
+<% if @km_until_next_oil_change_text.present? %>
+- 走行距離ベース: <%= @km_until_next_oil_change_text %>
 <% end %>
-<% if @days_until_next_oil_change.present? %>
-- 期間ベース: あと<%= @days_until_next_oil_change %>日
+<% if @days_until_next_oil_change_text.present? %>
+- 期間ベース: <%= @days_until_next_oil_change_text %>
 <% end %>
 
 早めのメンテナンスをおすすめします!

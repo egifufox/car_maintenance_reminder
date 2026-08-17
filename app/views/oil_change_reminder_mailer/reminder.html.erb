@@ -4,11 +4,11 @@
 
 <h2>次回交換時期</h2>
 <ul>
-  <% if @km_until_next_oil_change.present? %>
-    <li>走行距離ベース: あと<strong><%= @km_until_next_oil_change %> km</strong></li>
+  <% if @km_until_next_oil_change_text.present? %>
+    <li>走行距離ベース: <strong><%= @km_until_next_oil_change_text %></strong></li>
   <% end %>
-  <% if @days_until_next_oil_change.present? %>
-    <li>期間ベース: あと<strong><%= @days_until_next_oil_change %>日</strong></li>
+  <% if @days_until_next_oil_change_text.present? %>
+    <li>期間ベース: <strong><%= @days_until_next_oil_change_text %></strong></li>
   <% end %>
 </ul>
 
