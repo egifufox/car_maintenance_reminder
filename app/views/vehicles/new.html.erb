@@ -63,7 +63,7 @@
           <!-- 現在の走行距離 -->
           <div class="m-3">
             <%= f.label :current_mileage, '現在の走行距離' %>
-            <%= f.number_field :current_mileage, class: "form-control mt-2", placeholder: "例: 50000" %>
+            <%= f.number_field :current_mileage, value: @vehicle.current_mileage || '', class: "form-control mt-2", placeholder: "例: 50000" %>
             <small class="form-text text-muted">km単位で入力してください</small>
           </div>
 
