@@ -31,7 +31,6 @@ https://car-maintenance-reminder.onrender.com
 - 走行距離ベースと期間ベースの両方で交換時期を判定
 
 ### **ユーザビリティの向上**
-- レスポンシブデザイン対応（スマホでも使いやすい）
 - 複数車両の管理が簡単
 
 ### **コード品質の担保**
@@ -69,7 +68,7 @@ https://car-maintenance-reminder.onrender.com
 - [ ] ダッシュボード機能（今月やるべきメンテナンス一覧）
 - [ ] 車種別メンテナンス推奨項目
 - [ ] 独自ドメイン設定
-
+- [ ] なぜそのタイミングなのか等の解説ページ
 ## 使用技術
 ### **バックエンド**
 - Ruby 3.1.4
@@ -102,16 +101,16 @@ https://car-maintenance-reminder.onrender.com
 
 ## 画面イメージ
 ### トップページ
-[![Image from Gyazo](https://i.gyazo.com/7c0f9d94a0fe9b1d6987b5dd0aff6639.png)](https://gyazo.com/7c0f9d94a0fe9b1d6987b5dd0aff6639)
+[![Image from Gyazo](https://i.gyazo.com/43f35cc6c50838c529c7a6ad42d73b2e.png)](https://gyazo.com/43f35cc6c50838c529c7a6ad42d73b2e)
 
 ### 車両一覧ページ
-[![Image from Gyazo](https://i.gyazo.com/9139465f56e59e01ded559714887a7a7.png)](https://gyazo.com/9139465f56e59e01ded559714887a7a7)
+[![Image from Gyazo](https://i.gyazo.com/97115d23ab54b5ba6d1e50ce8355f144.png)](https://gyazo.com/97115d23ab54b5ba6d1e50ce8355f144)
 
 ### オイル交換記録ページ
-[![Image from Gyazo](https://i.gyazo.com/963990359b7361194ead9dc55923770f.png)](https://gyazo.com/963990359b7361194ead9dc55923770f)
+[![Image from Gyazo](https://i.gyazo.com/35c0949ca606dc63ab826f1e8a1e2da5.png)](https://gyazo.com/35c0949ca606dc63ab826f1e8a1e2da5)
 
 ### 使い方ページ
-[![Image from Gyazo](https://i.gyazo.com/2e19523898e3f945216a61500de7c0f5.png)](https://gyazo.com/2e19523898e3f945216a61500de7c0f5)
+[![Image from Gyazo](https://i.gyazo.com/42fa5782ba4c54ba38b1f7fd7c0fa01f.png)](https://gyazo.com/42fa5782ba4c54ba38b1f7fd7c0fa01f)
 
 ## ER図
 [![Image from Gyazo](https://i.gyazo.com/d65a33b668a9c77c2110e8c387f3ab4a.png)](https://gyazo.com/d65a33b668a9c77c2110e8c387f3ab4a)
