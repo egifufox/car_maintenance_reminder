@@ -34,15 +34,25 @@
 
           <div class="mb-3">
             <%= f.label :password, 'パスワード', class: "form-label" %>
-            <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "6文字以上" %>
+            <div class="input-group">
+              <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "6文字以上", id: "password-field" %>
+              <button class="btn btn-outline-secondary" type="button" id="toggle-password">
+                <i class="bi bi-eye" id="toggle-password-icon"></i>
+              </button>
+            </div>
             <% if @minimum_password_length %>
               <small class="form-text text-muted"><%= @minimum_password_length %>文字以上で入力してください</small>
             <% end %>
           </div>
             
           <div class="mb-3">
-            <%= f.label :password_confirmation, 'パスワード（確認）', class: "form-label" %>
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "パスワードを再入力" %>
+            <%= f.label :password_confirmation, 'パスワード(確認)', class: "form-label" %>
+            <div class="input-group">
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "パスワードを再入力", id: "password-confirmation-field" %>
+              <button class="btn btn-outline-secondary" type="button" id="toggle-password-confirmation">
+                <i class="bi bi-eye" id="toggle-password-confirmation-icon"></i>
+              </button>
+            </div>
           </div>
 
           <div class="d-grid">

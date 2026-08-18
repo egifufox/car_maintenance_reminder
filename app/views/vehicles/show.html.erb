@@ -6,114 +6,123 @@
       
       <article class="card mt-3">
         <div class="card-body">
-          <div class="row">
-            <!-- 左側：車両情報とオイル交換情報 -->
-            <div class="col-md-8">
-              <h3><%= @vehicle.vehicle_name %></h3>
-              
-              <div class="text-muted mt-2">
-                <i class="bi bi-car-front"></i> <%= @vehicle.manufacturer.name %> / <%= @vehicle.model %>
-              </div>
-
+          <!-- ヘッダー: 車両名と編集・削除ボタン -->
+          <div class="d-flex justify-content-between align-items-start mb-3">
+            <div>
+              <h3 class="mb-2">
+                <i class="bi bi-car-front me-2"></i>
+                <%= @vehicle.vehicle_name %>
+              </h3>
+              <p class="text-muted mb-2">
+                <%= @vehicle.manufacturer.name %> / <%= @vehicle.model %>
+              </p>
               <!-- 車両タイプバッジ -->
-              <div class="mt-3">
-                <% if @vehicle.vehicle_type == 'normal' %>
-                  <span class="badge text-bg-primary">ガソリン車</span>
-                <% elsif @vehicle.vehicle_type == 'hybrid' %>
-                  <span class="badge text-bg-success">ハイブリッド車</span>
-                <% end %>
-              </div>
-
-              <!-- オイル交換情報 -->
-              <div class="mt-4">
-                <h5>次回オイル交換の目安</h5>
-                <% if @vehicle.last_oil_change %>
-                  <div class="alert alert-info">
-                    <ul class="mb-0">
-                      <li>
-                        <strong>走行距離ベース:</strong> 
-                        <% if @vehicle.km_until_next_oil_change > 0 %>
-                          あと<%= number_with_delimiter(@vehicle.km_until_next_oil_change) %>km
-                        <% else %>
-                          <span class="text-danger">
-                            <%= number_with_delimiter(@vehicle.km_until_next_oil_change.abs) %>km超過
-                          </span>
-                        <% end %>
-                      </li>
-                      <li>
-                        <strong>期間ベース:</strong> 
-                        <% if @vehicle.days_until_next_oil_change > 0 %>
-                          あと<%= @vehicle.days_until_next_oil_change %>日
-                        <% else %>
-                          <span class="text-danger">
-                            <%= @vehicle.days_until_next_oil_change.abs %>日超過
-                          </span>
-                        <% end %>
-                      </li>
-                    </ul>
-                    
-                    <!-- 警告表示 -->
-                    <% if @vehicle.needs_oil_change_soon? %>
-                      <div class="alert alert-danger mt-2 mb-0">
-                        <strong>⚠️ オイル交換の時期が近づいています!</strong>
-                      </div>
-                    <% end %>
-                  </div>
-                <% else %>
-                  <p class="text-muted">オイル交換履歴を登録してください</p>
-                <% end %>
-              </div>
-
-              <!-- 車両詳細情報 -->
-              <div class="mt-4">
-                <h5>車両詳細</h5>
-                <dl class="row">
-                  <dt class="col-sm-4">年式:</dt>
-                  <dd class="col-sm-8"><%= @vehicle.year %>年</dd>
-
-                  <dt class="col-sm-4">現在の走行距離:</dt>
-                  <dd class="col-sm-8"><%= number_with_delimiter(@vehicle.current_mileage) %> km</dd>
-                </dl>
-              </div>
-
+              <% if @vehicle.vehicle_type == 'normal' %>
+                <span class="badge text-bg-primary">ガソリン車</span>
+              <% elsif @vehicle.vehicle_type == 'hybrid' %>
+                <span class="badge text-bg-success">ハイブリッド車</span>
+              <% end %>
             </div>
 
-            <!-- 右側：登録情報と編集・削除ボタン -->
-            <div class="col-md-4">
-              <div class="bg-light rounded p-3">
-                <table class="table table-sm table-borderless mb-0">
-                  <tbody>
-                    <tr>
-                      <th class="text-muted">登録日</th>
-                      <td><%= @vehicle.created_at.strftime("%Y-%m-%d") %></td>
-                    </tr>
-                    <tr>
-                      <th class="text-muted">登録者</th>
-                      <td><%= @vehicle.user.name %></td>
-                    </tr>
-                    <tr>
-                      <th class="text-muted">オイル交換回数</th>
-                      <td><%= @vehicle.oil_change_records.size %>件</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <hr>
-
-                <!-- 編集・削除ボタン -->
-                <% if current_user.own?(@vehicle) %>
-                  <div class="d-grid gap-2">
-                    <%= link_to edit_vehicle_path(@vehicle), class: "btn btn-outline-primary btn-sm" do %>
-                      <i class="bi bi-pencil"></i> 編集
-                    <% end %>
-                    <%= link_to vehicle_path(@vehicle), class: "btn btn-outline-danger btn-sm", data: { turbo_method: :delete, turbo_confirm: '削除しますか？' } do %>
-                      <i class="bi bi-trash-fill"></i> 削除
-                    <% end %>
-                  </div>
+            <!-- 編集・削除ボタン（控えめに配置） -->
+            <% if current_user.own?(@vehicle) %>
+              <div class="d-flex gap-2">
+                <%= link_to edit_vehicle_path(@vehicle), class: "btn btn-outline-secondary btn-sm" do %>
+                  <i class="bi bi-pencil"></i> 編集
+                <% end %>
+                <%= link_to vehicle_path(@vehicle), class: "btn btn-outline-danger btn-sm", data: { turbo_method: :delete, turbo_confirm: '削除しますか?' } do %>
+                  <i class="bi bi-trash-fill"></i> 削除
                 <% end %>
               </div>
-            </div>
-
+            <% end %>
           </div>
+
+          <hr>
+
+          <!-- 次回オイル交換の目安（最も重要な情報を大きく表示） -->
+          <div class="alert alert-primary mb-4">
+            <h4 class="alert-heading mb-3">
+              <i class="bi bi-calendar-event me-2"></i>
+              次回オイル交換の目安
+            </h4>
+            
+            <% if @vehicle.last_oil_change %>
+              <div class="row">
+                <div class="col-md-6 mb-2">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-speedometer2 me-2 fs-4"></i>
+                    <div>
+                      <div class="text-muted small">走行距離ベース</div>
+                      <div class="fs-5 fw-bold">
+                        <% if @vehicle.km_until_next_oil_change > 0 %>
+                          あと <%= number_with_delimiter(@vehicle.km_until_next_oil_change) %> km
+                        <% else %>
+                          <span class="text-danger">
+                            <%= number_with_delimiter(@vehicle.km_until_next_oil_change.abs) %> km超過
+                          </span>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6 mb-2">
+                  <div class="d-flex align-items-center">
+                    <i class="bi bi-clock me-2 fs-4"></i>
+                    <div>
+                      <div class="text-muted small">期間ベース</div>
+                      <div class="fs-5 fw-bold">
+                        <% if @vehicle.days_until_next_oil_change > 0 %>
+                          あと <%= @vehicle.days_until_next_oil_change %> 日
+                        <% else %>
+                          <span class="text-danger">
+                            <%= @vehicle.days_until_next_oil_change.abs %> 日超過
+                          </span>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 警告表示 -->
+              <% if @vehicle.needs_oil_change_soon? %>
+                <div class="alert alert-danger mt-3 mb-0">
+                  <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                  <strong>オイル交換の時期が近づいています!</strong>
+                </div>
+              <% end %>
+            <% else %>
+              <p class="mb-0">
+                <i class="bi bi-info-circle me-2"></i>
+                オイル交換履歴を登録してください
+              </p>
+            <% end %>
+          </div>
+
+          <!-- 車両詳細情報（シンプルに表示） -->
+          <div class="row">
+            <div class="col-md-6">
+              <h5 class="mb-3">車両詳細</h5>
+              <table class="table table-sm">
+                <tbody>
+                  <tr>
+                    <th class="text-muted" style="width: 40%;">年式</th>
+                    <td><%= @vehicle.year %> 年</td>
+                  </tr>
+                  <tr>
+                    <th class="text-muted">現在の走行距離</th>
+                    <td><%= number_with_delimiter(@vehicle.current_mileage) %> km</td>
+                  </tr>
+                  <tr>
+                    <th class="text-muted">オイル交換回数</th>
+                    <td><%= @vehicle.oil_change_records.size %> 件</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
         </div>
       </article>
     </div>
@@ -122,19 +131,23 @@
   <!-- オイル交換履歴一覧 -->
   <div class="col-lg-12 mt-4">
     <div class="d-flex justify-content-between align-items-center mb-3">  
-      <h4 class="mb-0">オイル交換履歴（<%= @oil_change_records.total_count %>件）</h4>
+      <h4 class="mb-0">
+        <i class="bi bi-clock-history me-2"></i>
+        オイル交換履歴（<%= @oil_change_records.total_count %>件）
+      </h4>
       <%= link_to new_vehicle_oil_change_record_path(@vehicle), class: "btn btn-success" do %>
         <i class="bi bi-plus-circle"></i> オイル交換記録を追加
       <% end %>
     </div>
   </div>
 
-   <div class="row">
+  <div class="row">
     <% if @oil_change_records.present? %>
       <%= render @oil_change_records %>
     <% else %>
       <div class="col-12">
         <div class="alert alert-secondary">
+          <i class="bi bi-info-circle me-2"></i>
           オイル交換履歴がまだありません
         </div>
       </div>

@@ -27,8 +27,13 @@
             <%# autofocus: true, autocomplete: "email"で自動入力させることでUI向上させてる　%>
 
             <div class="mb-3">
-                 <%= f.label :password, 'パスワード' %>
-                 <%= f.password_field :password, autocomplete: "current-password", class: "form-control mt-1", placeholder: "パスワード" %>
+              <%= f.label :password, 'パスワード' %>
+              <div class="input-group mt-1">
+                <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: "パスワード", id: "password-field" %>
+                <button class="btn btn-outline-secondary" type="button" id="toggle-password">
+                  <i class="bi bi-eye" id="toggle-password-icon"></i>
+                </button>
+              </div>
             </div>
 
             <% if devise_mapping.rememberable? %>
