@@ -37,7 +37,7 @@ class OilChangeRecordsController < ApplicationController
 
   def destroy
     @oil_change_record.destroy!
-    redirect_to vehicle_oil_change_records_path(@vehicle),
+    redirect_to vehicle_path(@vehicle),
                 success: t('defaults.flash_message.deleted', item: OilChangeRecord.model_name.human), status: :see_other
   end
 
