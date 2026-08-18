@@ -8,19 +8,19 @@ class OilChangeReminderMailer < ApplicationMailer
 
     # 走行距離ベースのフォーマット
     km_until = vehicle.km_until_next_oil_change
-    @km_until_next_oil_change_text = if km_until < 0
-                                        "#{km_until.abs}km超過"
-                                      else
-                                        "あと#{km_until} km"
-                                      end
+    @km_until_next_oil_change_text = if km_until.negative?
+                                       "#{km_until.abs}km超過"
+                                     else
+                                       "あと#{km_until} km"
+                                     end
 
     # 期間ベースのフォーマット
     days_until = vehicle.days_until_next_oil_change
-    @days_until_next_oil_change_text = if days_until < 0
-                                          "#{days_until.abs}日超過"
-                                        else
-                                          "あと#{days_until}日"
-                                        end
+    @days_until_next_oil_change_text = if days_until.negative?
+                                         "#{days_until.abs}日超過"
+                                       else
+                                         "あと#{days_until}日"
+                                       end
 
     mail(
       to: @user.email,

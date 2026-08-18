@@ -1,6 +1,6 @@
 <div class="min-vh-100 bg-light">
   <!-- メインビジュアル -->
-  <section class="hero position-relative text-white" style="min-height: 60vh; background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('<%= asset_path('car_image.jpg') %>') center/cover no-repeat;">
+  <section class="hero position-relative text-white" style="min-height: 60vh; background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('<%= asset_path('car_image.jpg') %>') center/cover no-repeat;">
     <div class="container h-100">
       <div class="row h-100 align-items-center justify-content-center">
         <div class="col-lg-10 text-center">
@@ -64,73 +64,90 @@
   <section class="py-5 bg-light">
     <div class="container">
       <h2 class="text-center mb-5 fw-bold">使い方はかんたん3ステップ</h2>
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm">
-            <div class="card-body text-center">
-              <span class="badge bg-primary mb-3 p-2">Step 1</span>
-              <h5 class="card-title">車両情報を登録</h5>
-              <p class="card-text text-muted">車種、年式、走行距離を入力するだけで準備完了</p>
+    
+    <!-- ステッパー（横並び） -->
+    <div class="row">
+      <div class="col-lg-10 mx-auto">
+        <div class="d-flex justify-content-between align-items-start position-relative">
+          <!-- 接続線（背景） -->
+          <div class="position-absolute top-0 start-0 w-100" style="height: 4px; background: #e0e0e0; top: 25px; z-index: 0;"></div>
+          
+          <!-- Step 1 -->
+          <div class="text-center position-relative" style="flex: 1; z-index: 1;">
+            <div class="d-flex justify-content-center mb-3">
+              <span class="badge bg-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; font-size: 1.2rem;">1</span>
             </div>
+            <div class="fw-bold fs-6 mb-2">車両情報を登録</div>
+            <p class="text-muted small mb-0">車種、年式、走行距離を入力するだけで準備完了</p>
           </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm">
-            <div class="card-body text-center">
-              <span class="badge bg-primary mb-3 p-2">Step 2</span>
-              <h5 class="card-title">前回のメンテナンス履歴を入力</h5>
-              <p class="card-text text-muted">オイル交換、タイヤ交換などの実施日を記録</p>
+          
+          <!-- Step 2 -->
+          <div class="text-center position-relative" style="flex: 1; z-index: 1;">
+            <div class="d-flex justify-content-center mb-3">
+              <span class="badge bg-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; font-size: 1.2rem;">2</span>
             </div>
+            <div class="fw-bold fs-6 mb-2">前回のメンテナンス履歴を入力</div>
+            <p class="text-muted small mb-0">オイル交換、タイヤ交換などの実施日を記録</p>
           </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm">
-            <div class="card-body text-center">
-              <span class="badge bg-primary mb-3 p-2">Step 3</span>
-              <h5 class="card-title">リマインドを受け取る</h5>
-              <p class="card-text text-muted">次回のメンテナンス時期が近づくと自動でお知らせ</p>
+          
+          <!-- Step 3 -->
+          <div class="text-center position-relative" style="flex: 1; z-index: 1;">
+            <div class="d-flex justify-content-center mb-3">
+              <span class="badge bg-primary rounded-circle d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; font-size: 1.2rem;">3</span>
             </div>
+            <div class="fw-bold fs-6 mb-2">リマインドを受け取る</div>
+            <p class="text-muted small mb-0">次回のメンテナンス時期が近づくと自動でお知らせ</p>
           </div>
         </div>
       </div>
+    </div>
     </div>
   </section>
 
   <!-- サービスの特徴 -->
-  <section class="py-5 bg-white">
-    <div class="container">
-      <h2 class="text-center mb-5 fw-bold">整備士の知識に基づく3つの特徴</h2>
-      <div class="row g-4">
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm bg-light">
-            <div class="card-body text-center">
-              <div class="display-4 mb-3">🔧</div>
-              <h5 class="card-title">整備士の実務経験</h5>
-              <p class="card-text text-muted">車種別、使用環境別の最適なタイミングを提案</p>
-            </div>
+<section class="py-5 bg-white">
+  <div class="container">
+    <h2 class="text-center mb-5 fw-bold">整備士の知識に基づく3つの特徴</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm bg-light">
+          <div class="card-body text-center">
+            <i class="bi bi-tools text-primary" style="font-size: 3rem;"></i>
+            <h5 class="card-title mt-3">整備士の実務経験</h5>
+            <p class="card-text text-muted">車種別、使用環境別の最適なタイミングを提案</p>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm bg-light">
-            <div class="card-body text-center">
-              <div class="display-4 mb-3">📧</div>
-              <h5 class="card-title">多様なリマインド方式</h5>
-              <p class="card-text text-muted">メール、LINE、アプリ内通知で忘れない仕組み</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card h-100 shadow-sm bg-light">
-            <div class="card-body text-center">
-              <div class="display-4 mb-3">📚</div>
-              <h5 class="card-title">教育的要素</h5>
-              <p class="card-text text-muted">なぜそのタイミングなのか、整備士による解説付き</p>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm bg-light">
+          <div class="card-body text-center">
+            <i class="bi bi-bell text-primary" style="font-size: 3rem;"></i>
+            <h5 class="card-title mt-3">多様なリマインド方式</h5>
+            <p class="card-text text-muted">メール、LINE、アプリ内通知で忘れない仕組み</p>
+            <!-- 具体例を追加 -->
+            <div class="mt-3 text-start">
+              <small class="text-muted">
+                <strong>通知例:</strong><br>
+                ・オイル交換: 5,000km または 6ヶ月後<br>
+                ・タイヤ交換: 30,000km または 3年後<br>
+                ・車検: 2年後
+              </small>
             </div>
           </div>
         </div>
       </div>
+      <div class="col-md-4">
+        <div class="card h-100 shadow-sm bg-light">
+          <div class="card-body text-center">
+            <i class="bi bi-book text-primary" style="font-size: 3rem;"></i>
+            <h5 class="card-title mt-3">教育的要素</h5>
+            <p class="card-text text-muted">なぜそのタイミングなのか、整備士による解説付き</p>
+          </div>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- CTA（Call To Action）セクション -->
   <section class="bg-light text-dark py-5">
