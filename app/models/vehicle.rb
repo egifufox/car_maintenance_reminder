@@ -11,11 +11,11 @@ class Vehicle < ApplicationRecord
 
   # バリデーション
   validates :vehicle_name, presence: true
-  validates :model, presence: true
-  validates :year, presence: true, numericality: {
+  validates :year, numericality: {
     only_integer: true,
     greater_than_or_equal_to: 1900,
-    less_than_or_equal_to: ->(_record) { Date.current.year + 1 }
+    less_than_or_equal_to: ->(_record) { Date.current.year + 1 },
+    allow_blank: true
   }
   validates :vehicle_type, presence: true
   validates :current_mileage, presence: true, numericality: {
