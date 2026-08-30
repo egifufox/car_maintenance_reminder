@@ -10,12 +10,12 @@ RSpec.describe Vehicle, type: :model do
       expect(vehicle.errors[:vehicle_name]).to include('を入力してください')
     end
 
-    it "model が空でも有効であること" do
+    it 'model が空でも有効であること' do
       vehicle = build(:vehicle, model: nil)
       expect(vehicle).to be_valid
     end
 
-    it "year が空でも有効であること" do
+    it 'year が空でも有効であること' do
       vehicle = build(:vehicle, year: nil)
       expect(vehicle).to be_valid
     end
