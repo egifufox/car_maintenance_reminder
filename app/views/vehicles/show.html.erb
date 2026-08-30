@@ -14,7 +14,8 @@
                 <%= @vehicle.vehicle_name %>
               </h3>
               <p class="text-muted mb-2">
-                <%= @vehicle.manufacturer.name %> / <%= @vehicle.model %>
+                <%= @vehicle.manufacturer.name %>
+                <%= "/ #{@vehicle.model}" if @vehicle.model.present? %>
               </p>
               <!-- 車両タイプバッジ -->
               <% if @vehicle.vehicle_type == 'normal' %>
@@ -106,10 +107,12 @@
               <h5 class="mb-3">車両詳細</h5>
               <table class="table table-sm">
                 <tbody>
-                  <tr>
-                    <th class="text-muted" style="width: 40%;">年式</th>
-                    <td><%= @vehicle.year %> 年</td>
-                  </tr>
+                  <% if @vehicle.year.present? %>
+                    <tr>
+                      <th class="text-muted" style="width: 40%;">年式</th>
+                      <td><%= @vehicle.year %> 年</td>
+                    </tr>
+                  <% end %>
                   <tr>
                     <th class="text-muted">現在の走行距離</th>
                     <td><%= number_with_delimiter(@vehicle.current_mileage) %> km</td>

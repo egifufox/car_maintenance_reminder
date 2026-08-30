@@ -114,8 +114,18 @@ Bootstrap5は使い慣れていたことに加え、コンポーネントが豊�
 Ruby on Railsは「設定より規約」という思想により、少人数・短期間での開発に向いています。またDeviseやKaminariなど実績のあるGemが豊富に存在し、認証やページネーションといった機能を安全かつ効率的に実装できる点も選定理由の一つです。MVCアーキテクチャにより責務が明確に分かれているため、機能追加時の見通しも良く、個人開発でも保守性を保ちやすいと考えました。
 
 ### 認証
-DeviseはRailsで広く使われている実績のあるgemであり、認証機能を簡易的かつ安全に実装できるので採用しました。
-OmniAuth（Googleログイン）はユーザーが個別にパスワードを設定・管理する必要がなくなり、セキュリティリスクとユーザーの手間を同時に減らせた。Google側で二段階認証などのセキュリティ管理がされているため、自前で実装するより安全性が高いので導入しました。
+認証機能には、Railsで広く使われている実績のあるDeviseを採用しました。
+Deviseはメールアドレス/パスワードによる認証を簡易的かつ安全に実装できるだけでなく、OmniAuthableモジュールを標準でサポートしているため、外部認証(ソーシャルログイン)への拡張が容易な点も採用理由の一つです。
+
+この特性を活かし、GoogleログインをOmniAuthで実装しました。
+Googleログインを導入することで、ユーザーが個別にパスワードを設定・管理する必要がなくなり、
+セキュリティリスクとユーザーの手間を同時に減らすことができます。Google側で二段階認証などの
+セキュリティ管理がされているため、自前でパスワード管理機能を実装するより安全性が高い点も
+導入の決め手になりました。
+
+また、OmniAuthは標準の実装だとCSRF対策(GETリクエストで認証フローが開始できてしまう問題)が
+弱いという課題があるため、`omniauth-rails_csrf_protection` gemを導入し、
+Railsのauthenticity_tokenによるCSRF対策を組み込んでいます。
 
 ### ページネーション
 Rails標準にはページネーション機能がなくgemが必要ため、kaminariを採用しました。pagyに比べて、Bootstrap5対応のViewが公式で用意されていて実装が早かったです。
@@ -227,24 +237,126 @@ end
 ## こだわった実装
 ### こだわった実装は以下の機能になります。
 - ユーザー認証機能
+- SNSでURLをシェアした際に表示される画像を設計
 - 整備士の経験を活かした機能設計
-- 
+- 複数車両を一括管理できる設計
+- ユーザビリティの向上
 
 ### ユーザー認証機能
-`Devise`はRailsで広く使われている実績のあるgemであり、認証機能を簡易的かつ安全に実装できるので採用しました。
-`OmniAuth（Googleログイン）`はユーザーが個別にパスワードを設定・管理する必要がなくなり、セキュリティリスクとユーザーの手間を同時に減らせた。Google側で二段階認証などのセキュリティ管理がされているため、自前で実装するより安全性が高いので導入しました。
+オイル交換の記録アプリという特性上、ユーザーが「面倒だから」と離脱してしまうと本末転倒だと考えました。そのため、メールアドレスや
+パスワードの入力を省略できるGoogleログインを実装し、ログインボタン1つで利用を開始できるようにしています。
+
+ログインリンクをPOSTメソッドでアクセスする必要があることに気づかず、GETでアクセスしてしまいエラーが発生していました。Railsのルーティングを
+確認したところ、Deviseのログイン処理がPOSTを前提としていたため、`button_to` を使ってPOSTリクエストを送るように修正し解決しました。
 
 ### 整備士の経験を活かした機能設計
-- 車両タイプ（ガソリン車/ハイブリッド車）に応じた推奨交換時期の自動計算
-- 走行距離ベースと期間ベースの両方で交換時期を判定
+整備士として実際の現場で働く中で、「走行距離だけで判断すると、あまり車に乗らない人は長期間オイル交換をしない可能性がある」「期間だけで判断すると、年間走行距離が多い人は適切な時期より遅くなってしまう」という課題を数多く見てきました。
+この実務経験を活かし、単なる記録アプリではなく「走行距離」と「期間」の両方を計算し交換時期を自動で判断してくれるよう設計しました。
+また、ガソリン車とハイブリッド車では交換目安が異なるため、車両タイプによって判定基準を切り替えています。
 
-### **ユーザビリティの向上**
-- 複数車両の管理が簡単
+```ruby
+# app/models/vehicle.rb（抜粋）
+def oil_change_interval_km
+  hybrid? ? 10_000 : 5_000
+end
+```
+ハイブリッド車はガソリン車に比べてエンジンの停止している割合が高いため、ガソリン車よりもオイル交換のスパンを長くしております。
+この実務知識を反映し、車両タイプごとに異なる交換基準(10,000km/5,000km)を設定しました。
 
-### **コード品質の担保**
-- RSpecによるテストカバレッジ
-- Rubocopによるコード品質管理
-- GitHub Actionsによる自動テスト
+```ruby
+# app/models/vehicle.rb（抜粋）
+def km_until_next_oil_change
+  return nil if last_oil_change.blank?
+  oil_change_interval_km - (current_mileage - last_oil_change.mileage)
+end
+```
+「(交換基準の距離)-(前回交換時からの走行距離)」で、次回交換まであと何km走れるかを算出しています。
+
+```ruby
+# app/models/vehicle.rb（抜粋）
+def days_until_next_oil_change
+  return nil if last_oil_change.blank?
+  target_date = last_oil_change.changed_at + 1.year
+  (target_date - Date.today).to_i
+end
+```
+「前回のオイル交換から1年後の日付」を計算し、「今日から見て、あと何日でその日が来るか」を算出しています。
+
+
+```ruby
+# app/models/vehicle.rb（抜粋）
+def last_oil_change
+  oil_change_records.order(changed_at: :desc).first
+end
+  
+# 交換時期が近い?(1000km以内または1ヶ月以内)
+def needs_oil_change_soon?
+  km_until_next_oil_change.present? && km_until_next_oil_change <= 1000 ||
+  days_until_next_oil_change.present? && days_until_next_oil_change <= 30
+end
+```
+
+```ruby
+# app/views/vehicles/show.html.erb（抜粋）
+<div class="text-muted small">走行距離ベース</div>
+<div class="fs-5 fw-bold">
+  <% if @vehicle.km_until_next_oil_change > 0 %>
+    あと <%= number_with_delimiter(@vehicle.km_until_next_oil_change) %> km
+  <% else %>
+    <span class="text-danger">
+      <%= number_with_delimiter(@vehicle.km_until_next_oil_change.abs) %> km超過
+    </span>
+  <% end %>
+</div>
+
+<div class="text-muted small">期間ベース</div>
+<div class="fs-5 fw-bold">
+  <% if @vehicle.days_until_next_oil_change > 0 %>
+    あと <%= @vehicle.days_until_next_oil_change %> 日
+　<% else %>
+    <span class="text-danger">
+      <%= @vehicle.days_until_next_oil_change.abs %> 日超過
+    </span>
+  <% end %>
+</div>
+
+<% if @vehicle.needs_oil_change_soon? %>
+  <div class="alert alert-danger mt-3 mb-0">
+    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+    <strong>オイル交換の時期が近づいています!</strong>
+  </div>
+<% end %>
+```
+`needs_oil_change_soon?`を定義することによって、次回オイル交換まで1000km以内または1ヶ月以内であれば警告表示が出るように実装しました。これは一般的にオイル交換の目安である5,000km/10,000kmに対して、1,000kmを余裕期間として設定しました。ユーザーが余裕を持って交換の予定を立てられるよう、少し早めに通知するようにしています。
+
+距離ベース`km_until_next_oil_change`と期間ベース`def days_until_next_oil_change`を定義しており、前回オイル交換時の距離と日付を参照し比較するようにしております。
+
+### 複数車両を一括管理できる設計
+整備士として働く中で、お客さまが1台の車だけでなく、
+家族の車や複数所有している車をまとめて管理したいというニーズを数多く見てきました。1台のみの管理に限定してしまうと実際の
+利用シーンに合わないため、1ユーザーが複数の車両を登録・管理できる設計にしました。
+
+車両ごとに走行距離やオイル交換履歴を個別に紐付けることで、
+「どの車が、いつ交換時期を迎えるか」を一目で把握できるようにしています。
+
+### ユーザビリティの向上
+開発中に第三者から以下のフィードバックをいただきました。
+
+- ログインまたは新規登録時に、パスワードが非表示なので自分の入力内容を確認できない
+- 「かんたん3ステップ」の表示が進行状況が分かりにくい
+
+#### 対応内容
+
+**パスワード表示/非表示ボタンの実装**
+ユーザーが自分の入力内容を確認できないまま送信してしまうと、
+入力ミスに気づけずログインできない、というフィードバックをいただきました。
+そのため、目のアイコンをクリックすることでパスワードの表示/非表示を
+切り替えられるボタンを実装し、ユーザーが入力内容を確認できるように改善しました。
+
+**ステップ表示のstepper化**
+「かんたん3ステップ」は文章での説明のみだと、ユーザーが「今どの段階にいるのか」を
+把握しづらいという課題がありました。そのため、進行状況を視覚的に示すstepperのUIに
+変更し、現在地と残りのステップ数が一目で分かるように改善しました。
 
 ## 今後の開発について
 今後、以下の機能を実装予定です。
