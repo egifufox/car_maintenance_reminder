@@ -8,7 +8,7 @@ class VehiclesController < ApplicationController
   OIL_CHANGE_RECORDS_PER_PAGE = 4
 
   def index
-    @vehicles = current_user.vehicles.all.page(params[:vehicles_page]).per(VEHICLES_PER_PAGE)
+    @vehicles = current_user.vehicles.includes(:manufacturer).page(params[:vehicles_page]).per(VEHICLES_PER_PAGE)
   end
 
   def new
