@@ -1,0 +1,111 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Dynamic Render Path",
+      "warning_code": 15,
+      "fingerprint": "03107b92a0dcda367722384213b491ca367c37962718ee2303b59b244d1ba331",
+      "check_name": "Render",
+      "message": "Render path contains parameter value",
+      "file": "app/views/vehicles/show.html.erb",
+      "line": 149,
+      "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
+      "code": "render(action => current_user.vehicles.find(params[:id]).oil_change_records.order(:changed_at => :desc).page(params[:oil_change_records_page]).per(4), {})",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "VehiclesController",
+          "method": "show",
+          "line": 33,
+          "file": "app/controllers/vehicles_controller.rb",
+          "rendered": {
+            "name": "vehicles/show",
+            "file": "app/views/vehicles/show.html.erb"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "vehicles/show"
+      },
+      "user_input": "params[:oil_change_records_page]",
+      "confidence": "Weak",
+      "cwe_id": [
+        22
+      ],
+      "note": "params[:oil_change_records_page] is used only for pagination (kaminari), not for the render template path itself. No actual vulnerability."
+    },
+    {
+      "warning_type": "Unmaintained Dependency",
+      "warning_code": 120,
+      "fingerprint": "d84924377155b41e094acae7404ec2e521629d86f97b0ff628e3d1b263f8101c",
+      "check_name": "EOLRails",
+      "message": "Support for Rails 7.0.10 ended on 2025-04-01",
+      "file": "Gemfile.lock",
+      "line": 279,
+      "link": "https://brakemanscanner.org/docs/warning_types/unmaintained_dependency/",
+      "code": null,
+      "render_path": null,
+      "location": null,
+      "user_input": null,
+      "confidence": "High",
+      "cwe_id": [
+        1104
+      ],
+      "note": "Following curriculum specified Ruby/Rails version. Not a code vulnerability, just EOL warning."
+    },
+    {
+      "warning_type": "Dynamic Render Path",
+      "warning_code": 15,
+      "fingerprint": "dabb9797349fd2413c54a4a7427693cb62114d97eeb3247f2056a48d8f26cdf2",
+      "check_name": "Render",
+      "message": "Render path contains parameter value",
+      "file": "app/views/vehicles/index.html.erb",
+      "line": 24,
+      "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
+      "code": "render(action => current_user.vehicles.includes(:manufacturer).page(params[:vehicles_page]).per(4), {})",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "VehiclesController",
+          "method": "index",
+          "line": 12,
+          "file": "app/controllers/vehicles_controller.rb",
+          "rendered": {
+            "name": "vehicles/index",
+            "file": "app/views/vehicles/index.html.erb"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "vehicles/index"
+      },
+      "user_input": "params[:vehicles_page]",
+      "confidence": "Weak",
+      "cwe_id": [
+        22
+      ],
+      "note": "params[:vehicles_page] is used only for pagination (kaminari), not for the render template path itself. No actual vulnerability."
+    },
+    {
+      "warning_type": "Unmaintained Dependency",
+      "warning_code": 121,
+      "fingerprint": "edf687f759ec9765bd5db185dbc615c80af77d6e7e19386fc42934e7a80307af",
+      "check_name": "EOLRuby",
+      "message": "Support for Ruby 3.1.4 ended on 2025-03-31",
+      "file": ".ruby-version",
+      "line": 1,
+      "link": "https://brakemanscanner.org/docs/warning_types/unmaintained_dependency/",
+      "code": null,
+      "render_path": null,
+      "location": null,
+      "user_input": null,
+      "confidence": "High",
+      "cwe_id": [
+        1104
+      ],
+      "note": "Following curriculum specified Ruby/Rails version. Not a code vulnerability, just EOL warning."
+    }
+  ],
+  "brakeman_version": "7.1.1"
+}
