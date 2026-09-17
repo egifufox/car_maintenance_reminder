@@ -51,3 +51,18 @@ jobs:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:password@localhost:5432/car_maintenance_reminder_test
         run: bundle exec rspec
+
+  brakeman:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1.4'
+          bundler-cache: true
+
+      - name: Run Brakeman
+        run: bundle exec brakeman -q -w2
